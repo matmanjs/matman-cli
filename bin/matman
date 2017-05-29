@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
-'use strict';
-
-require('../lib/index');
+require('commander')
+    .version(require('../package').version)
+    .usage('<command> [options]')
+    .command('convert', 'generate a new project from a template')
+    .parse(process.argv);
