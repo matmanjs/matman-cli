@@ -36,11 +36,9 @@ program.on('--help', function () {
     console.log();
     console.log(chalk.gray('    # convert an mock module into a single file'));
     console.log('    $ matman convert example.js --out-file compiled.json');
-    console.log('    $ matman convert example.js -o compiled.json');
     console.log();
     console.log(chalk.gray('    # convert an input directory of modules into an output directory'));
     console.log('    $ matman convert src --out-dir lib');
-    console.log('    $ matman convert src -d lib');
     console.log();
 });
 
@@ -50,7 +48,6 @@ program.on('--help', function () {
 function help() {
     program.parse(process.argv);
 
-    console.log('--', program);
     if (program.args.length < 1) {
         return program.help();
     }
