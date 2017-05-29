@@ -25,8 +25,8 @@ const matmanConvert = require('../lib/convert');
  */
 program
     .usage('<files ...> [options]')
-    .option('-o, --out-file [out]', 'convert an mock module into a single file')
-    .option('-d, --out-dir [out]', 'convert an input directory of modules into an output directory');
+    .option('--out-file <value>', 'convert an mock module into a single file')
+    .option('--out-dir <value>', 'convert an input directory of modules into an output directory');
 
 /**
  * Help.
@@ -49,6 +49,8 @@ program.on('--help', function () {
  */
 function help() {
     program.parse(process.argv);
+
+    console.log('--', program);
     if (program.args.length < 1) {
         return program.help();
     }
@@ -63,8 +65,6 @@ help();
 var target = program.args[0];
 var outFile = program.outFile;
 var outDir = program.outDir;
-
-
 
 // var hasSlash = template.indexOf('/') > -1
 // var rawName = program.args[1]
@@ -86,7 +86,6 @@ console.log();
 process.on('exit', function () {
     console.log();
 });
-
 
 matmanConvert.convert(target, outFile, outDir);
 
