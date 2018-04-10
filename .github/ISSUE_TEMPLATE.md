@@ -3,7 +3,7 @@
 <!--
  1. BUG description
  2. The way to reproduce
- 3. Log with feflow <command> --debug
+ 3. Log with matman <command> --debug
 -->
 
 ## For question
