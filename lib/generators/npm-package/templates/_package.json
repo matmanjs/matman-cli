@@ -1,0 +1,12 @@
+{
+  "name": "<%= name %>",
+  "description": "<%= description %>",
+  "version": "<%= version %>",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublish": "node ./build.js"
+  },
+  "devDependencies": {
+    "matman-core": "^0.1.4"
+  }
+}
