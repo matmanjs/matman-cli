@@ -41,6 +41,7 @@
     "cross-spawn": "^5.1.0",
     "easy-table": "^1.1.1",
     "figlet": "^1.2.0",
+    "fs-extra": "^5.0.0",
     "hexo-fs": "^0.2.3",
     "inquirer": "^3.0.6",
     "js-yaml": "^3.11.0",
@@ -54,8 +55,7 @@
     "request-promise": "^4.2.1",
     "semver": "^5.4.1",
     "yeoman-environment": "^1.6.6",
-    "yeoman-generator": "^2.0.3",
-    "yosay": "^2.0.2"
+    "yeoman-generator": "^2.0.3"
   },
   "devDependencies": {
     "chai": "^4.1.1",
