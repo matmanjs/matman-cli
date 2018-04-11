@@ -1,6 +1,6 @@
 {
   "name": "matman-cli",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Simple CLI for MatMan projects",
   "main": "lib/index.js",
   "scripts": {
@@ -45,7 +45,7 @@
     "hexo-fs": "^0.2.3",
     "inquirer": "^3.0.6",
     "js-yaml": "^3.11.0",
-    "matman-core": "^0.1.4",
+    "matman-core": "^0.1.5",
     "meow": "^3.7.0",
     "minimist": "^1.2.0",
     "ora": "^1.4.0",
