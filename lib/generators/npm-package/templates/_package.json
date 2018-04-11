@@ -4,9 +4,9 @@
   "version": "<%= version %>",
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "node ./build.js"
+    "prepublish": "node ./node_modules/matman-cli/bin/matman build-module ./src ./lib -a"
   },
   "devDependencies": {
-    "matman-core": "^0.1.4"
+    "matman-cli": "^<%= matmanCliVersion %>"
   }
 }
