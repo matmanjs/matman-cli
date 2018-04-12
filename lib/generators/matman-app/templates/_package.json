@@ -9,7 +9,7 @@
     "dev-mac": "export NODE_ENV=development && pm2 start entry.js --name=<%= name %>",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
+  "dependencies": {
     "matman": "^<%= matmanVersion %>"
   }
 }
