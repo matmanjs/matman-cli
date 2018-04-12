@@ -15,7 +15,8 @@
     "url": "git+https://github.com/helinjiang/matman-cli.git"
   },
   "keywords": [
-    "matman"
+    "matman",
+    "matman-cli"
   ],
   "author": "helinjiang",
   "engines": {
