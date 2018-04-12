@@ -1,6 +1,6 @@
 {
   "name": "matman-cli",
-  "version": "0.3.3",
+  "version": "0.3.6",
   "description": "Simple CLI for MatMan projects",
   "main": "lib/index.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "url": "git+https://github.com/helinjiang/matman-cli.git"
   },
   "keywords": [
-    "matman"
+    "matman",
+    "matman-cli"
   ],
   "author": "helinjiang",
   "engines": {
