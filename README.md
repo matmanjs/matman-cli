@@ -12,3 +12,6 @@ npm install matman-cli -g
 
 ## 用法说明
 
+- `--help`，打印帮助
+- `--version`，打印版本号
+
