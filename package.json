@@ -1,7 +1,7 @@
 {
   "name": "matman-cli",
-  "version": "0.3.6",
-  "description": "Simple CLI for MatMan projects",
+  "version": "1.0.0",
+  "description": "CLI for MatMan projects",
   "main": "lib/index.js",
   "scripts": {
     "start": "node ./bin/matman",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/helinjiang/matman-cli.git"
+    "url": "git+https://github.com/matmanjs/matman-cli.git"
   },
   "keywords": [
     "matman",
@@ -27,9 +27,9 @@
     "matman": "./bin/matman"
   },
   "bugs": {
-    "url": "https://github.com/helinjiang/matman-cli/issues"
+    "url": "https://github.com/matmanjs/matman-cli/issues"
   },
-  "homepage": "https://github.com/helinjiang/matman-cli#readme",
+  "homepage": "https://github.com/matmanjs/matman-cli#readme",
   "configs": {
     "compatibleVersion": ">=0.3.0"
   },
