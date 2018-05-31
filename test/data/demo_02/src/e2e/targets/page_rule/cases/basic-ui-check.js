@@ -1,5 +1,5 @@
-const env = require('../env');
-const client = require('../client-script');
+const env = require('./env/index');
+const client = require('../../../../../e2e-service/testers/page-rules/client-script/index');
 const scanPage = require('../../../lib/handle-master/scan-page');
 
 function getResult(opts, useRecorder) {
