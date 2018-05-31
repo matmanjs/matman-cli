@@ -1,4 +1,4 @@
-const tools = require('../../../../lib/client/tools');
+const tools = require('../../../lib/client-script/tools');
 
 /**
  * 必须要通过挂载在 window 对象上，才能够被传递到 electronic 中
