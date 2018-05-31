@@ -6,6 +6,8 @@ module.exports = {
   distPath: path.join(__dirname, 'dist'),
   srcClientPath: path.join(__dirname, 'src-client-script'),
   distClientPath: path.join(__dirname, 'dist-client-script'),
-  entryRelativePath: './client',
-
+  clientScriptMatch: /crawlers\/.*\.js$/,
+  entry: {
+    'page_rule/crawlers/get-page-info': path.join(__dirname, 'dist-client-script/page_rule/crawlers/get-page-info.js')
+  }
 };
