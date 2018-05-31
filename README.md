@@ -29,3 +29,8 @@ npm install matman-cli -g
 - 将mocker序列化
 
 #### matman build-mocker [--dev]
+
+
+## 备注
+
+如果要开发，则需要 node 版本到 8.0 以上
