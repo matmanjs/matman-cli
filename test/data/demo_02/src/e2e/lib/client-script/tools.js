@@ -1,3 +1,5 @@
+const urlHandle = require('url-handle');
+
 /**
  * 获得背景图地址
  * @param {String || Element} jqCur css选择器或者jQuery对象
@@ -112,5 +114,6 @@ module.exports = {
   getAttr: getAttr,
   isExist: isExist,
   getText: getText,
-  getTotal: getTotal
+  getTotal: getTotal,
+  urlHandle: urlHandle
 };
