@@ -156,7 +156,7 @@ class ActionHandle {
 
 function evaluate() {
     // 如果没有这个变量，说明注入代码失败
-    if (!window.e2ex) {
+    if (!window.matman_ver) {
         return {
             error: 'preload failed!'
         };
