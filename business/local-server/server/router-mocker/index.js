@@ -91,40 +91,28 @@ module.exports = (entry) => {
       // req.params.id = "1"
 
       // console.log(req.headers.referer)
-      // 目前只支持 plugin=mocker 的场景，_m_name=该模块的名字，_m_target=该模块的值对应的名字,_m_disable
-      let paramsFromReferer = mockerUtil.paramsFromReferer();
-      // try {
-      //   paramsFromReferer = JSON.parse(util.query('_matman', req.headers.referer)) || [];
-      // } catch (e) {
-      //   paramsFromReferer = [];
-      // }
-      // let paramsFromReferer = [{
-      //   _m_name: 'demo_simple11',
-      //   _m_target: 'success',
-      //   _m_disable: 0
-      // }];
-
-      console.log('====paramsFromReferer=====', paramsFromReferer);
 
       let isDisable;
 
       // 判断该路由的名字是否在referer中
-      let matchedReferer = paramsFromReferer.filter((item) => {
-        return item._m_name === mockerData.name;
-      })[0];
-
+      let matchedReferer = mockerUtil.getMatchedReferer(req.headers.referer, mockerData.name);
+      // let matchedReferer = {
+      //   _m_name: 'demo_simple11',
+      //   _m_target: 'success',
+      //   _m_disable: 0
+      // };
       // console.log('====matchedReferer=====', matchedReferer);
 
       if (matchedReferer) {
         // referer 里面的请求参数拥有最高优先级，因为这种场景比较特殊，主要用于自动化测试之用
         isDisable = matchedReferer._m_disable;
       } else {
-        // 从请求 req 或者 config.json 文件中检查当前请求是否需要禁用 handle 服务
+        // 从请求 req 或者 config.json 文件中检查当前请求是否需要禁用 mock 服务
         isDisable = req.query._m_disable || req.body._m_disable;
         if (!isDisable) {
           // 此处要重新获取新的数据，以便取到缓存的。
           // TODO 此处还可以优化，比如及时更新缓存中的数据，而不需要每次都去获取
-          let curMockerData = mockerParser.getHandler(mockerData.name, true);
+          let curMockerData = mockerParser.getMockerByName(mockerData.name, true);
           isDisable = curMockerData.disable;
         }
       }
@@ -132,7 +120,7 @@ module.exports = (entry) => {
       if (isDisable) {
         // 如果当前禁用了 handle 服务，则不处理
         res.locals.isDisabled = true;
-        res.locals.handlerName = mockerData.name;
+        res.locals.mockerName = mockerData.name;
         next();
       } else {
         let url = ROUTE_PATH;
