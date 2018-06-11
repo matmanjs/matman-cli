@@ -10,13 +10,13 @@ global.Promise = require('bluebird');
 const matmanServer = require('./server');
 const runConfig = require('./config');
 
-// const logger = require('./server/logger');
-// const matmanLogger = logger.matmanLogger();
-// const attentionLogger = logger.attentionLogger();
-//
-// // 暴露一个全局log变量
-// global.matmanLogger = matmanLogger;
-// global.attentionLogger = attentionLogger;
+const logger = require('./server/logger');
+const matmanLogger = logger.matmanLogger();
+const attentionLogger = logger.attentionLogger();
+
+// 暴露一个全局log变量
+global.matmanLogger = matmanLogger;
+global.attentionLogger = attentionLogger;
 
 module.exports = (opts) => {
   //====================================================================================
@@ -37,8 +37,8 @@ module.exports = (opts) => {
   //====================================================================================
   // 3. 初始化日志打印
   //====================================================================================
-  // logger.init(configOpts.LOG_PATH);
-  // matmanLogger.info(configOpts);
+  logger.init(configOpts.LOG_PATH);
+  matmanLogger.info(configOpts);
   console.log('configOpts:', configOpts);
 
   //====================================================================================
@@ -91,7 +91,7 @@ module.exports = (opts) => {
   });
 
   // 日志打印模块
-  // app.use(logger.connectLogger());
+  app.use(logger.connectLogger());
 
   // To handle POST, PUT and PATCH you need to use a body-parser
   // You can use the one used by JSON Server

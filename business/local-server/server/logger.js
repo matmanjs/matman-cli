@@ -2,37 +2,33 @@ const path = require('path');
 const log4js = require('log4js');
 
 exports.init = function (logPath) {
-  let isAbsolute = logPath && path.isAbsolute(logPath);
+  // let isAbsolute = logPath && path.isAbsolute(logPath);
 
   log4js.configure({
-    appenders: [
-      { type: 'console' }, //控制台输出
-      {
-        type: 'file', //文件输出
-        filename: isAbsolute ? path.join(logPath, 'access.log') : 'logs/access.log',
-        maxLogSize: 1024 * 1024 * 50, // 50MB
-        // backups: 1,
-        category: 'http',
-        absolute: isAbsolute
+    appenders: {
+      console: { type: 'console' },
+      http: {
+        type: 'file',
+        filename: 'logs/access.log',
+        maxLogSize: 1024 * 1024 * 50 // 50MB
       },
-      {
-        type: 'file', //文件输出
-        filename: isAbsolute ? path.join(logPath, 'matman.log') : 'logs/matman.log',
-        maxLogSize: 1024 * 1024 * 50, // 50MB
-        // backups: 1,
-        category: 'matman',
-        absolute: isAbsolute
+      matman: {
+        type: 'file',
+        filename: 'logs/matman.log',
+        maxLogSize: 1024 * 1024 * 50 // 50MB
       },
-      {
-        type: 'file', //文件输出
-        filename: isAbsolute ? path.join(logPath, 'attention.log') : 'logs/attention.log',
-        maxLogSize: 1024 * 1024 * 50, // 50MB
-        // backups: 1,
-        category: 'attention',
-        absolute: isAbsolute
+      attention: {
+        type: 'file',
+        filename: 'logs/attention.log',
+        maxLogSize: 1024 * 1024 * 50 // 50MB
       }
-    ],
-    replaceConsole: true
+    },
+    categories: {
+      default: { appenders: ['console'], level: 'info' },
+      http: { appenders: ['console', 'http'], level: 'trace' },
+      matman: { appenders: ['console', 'matman'], level: 'trace' },
+      attention: { appenders: ['console', 'attention'], level: 'trace' }
+    }
   });
 };
 
@@ -45,7 +41,7 @@ exports.connectLogger = function () {
 exports.logger = function (name) {
   const logger = log4js.getLogger(name);
 
-  logger.setLevel('INFO');
+  // logger.setLevel('INFO');
 
   return logger;
 };
