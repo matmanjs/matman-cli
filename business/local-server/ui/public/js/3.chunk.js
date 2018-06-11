@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 944:
+/***/ 618:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13,14 +13,14 @@ exports.default = {
   path: '/admin/mockers/list',
   getComponent: function getComponent(nextState, cb) {
     __webpack_require__.e/* require.ensure */(13).then((function (require) {
-      cb(null, __webpack_require__(1181).default);
+      cb(null, __webpack_require__(855).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };
 
 /***/ }),
 
-/***/ 945:
+/***/ 619:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33,7 +33,7 @@ exports.default = {
   path: '/admin/mockers/mocker/:mockerName',
   getComponent: function getComponent(nextState, cb) {
     __webpack_require__.e/* require.ensure */(10).then((function (require) {
-      cb(null, __webpack_require__(1184).default);
+      cb(null, __webpack_require__(858).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
   }
 };

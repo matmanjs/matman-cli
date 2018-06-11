@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'babel-polyfill';
+// import 'babel-polyfill';
 
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';

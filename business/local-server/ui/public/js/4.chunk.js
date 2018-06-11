@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 949:
+/***/ 623:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Stubs;
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
