@@ -4,7 +4,7 @@
  * @param pluginName
  * @param callback
  */
-export function initGetList(router, pluginName, callback) {
+function initGetList(router, pluginName, callback) {
   router.get(`/sys-cgi/${pluginName}`, callback);
 }
 
@@ -15,7 +15,7 @@ export function initGetList(router, pluginName, callback) {
  * @param handlerNameField
  * @param callback
  */
-export function initGetOne(router, pluginName, handlerNameField, callback) {
+function initGetOne(router, pluginName, handlerNameField, callback) {
   router.get(`/sys-cgi/${pluginName}/:${handlerNameField}`, callback);
 }
 
@@ -26,7 +26,7 @@ export function initGetOne(router, pluginName, handlerNameField, callback) {
  * @param handlerNameField
  * @param callback
  */
-export function initPostOne(router, pluginName, handlerNameField, callback) {
+function initPostOne(router, pluginName, handlerNameField, callback) {
   router.post(`/sys-cgi/${pluginName}/:${handlerNameField}`, callback);
 }
 
@@ -37,10 +37,13 @@ export function initPostOne(router, pluginName, handlerNameField, callback) {
  * @param handlerNameField
  * @param callback
  */
-export function initGetOneReadMe(router, pluginName, handlerNameField, callback) {
+function initGetOneReadMe(router, pluginName, handlerNameField, callback) {
   router.get(`/sys-cgi/${pluginName}/:${handlerNameField}/readme`, callback);
 }
 
-
-
-
+module.exports = {
+  initGetList: initGetList,
+  initGetOne: initGetOne,
+  initPostOne: initPostOne,
+  initGetOneReadMe: initGetOneReadMe
+};

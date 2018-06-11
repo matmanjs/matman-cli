@@ -4,6 +4,7 @@ const path = require('path');
 /**
  * 获取最终的配置数据
  * @param {Object | String} opts 用户传递过来的参数
+ * @param {String} [opts.basePath] 项目根目录
  * @returns {Object}
  */
 function getConfigOpts(opts) {

@@ -3,14 +3,17 @@ const methodOverride = require('method-override');
 const _ = require('lodash');
 const request = require('request');
 const bodyParser = require('../body-parser');
-const HandlerParser = require('../../parser/handler-parser2').default;
+// const HandlerParser = require('../../parser/handler-parser2').default;
+const MockerParser = require('../../../../../matman/src/mocker/MockerParser');
 const initPlugins = require('./plugins');
-const util = require('../../util');
+const mockerUtil = require('../../../../../matman/src/mocker/util');
 
 module.exports = (entry) => {
-  const handlerParser = new HandlerParser(entry);
+  const mockerParser = new MockerParser({
+    basePath: entry.mockServicePath
+  });
 
-  let handlerList = handlerParser.parseAndSave();
+  let mockerList = mockerParser.getAllMocker();
 
   // Create router
   // http://expressjs.com/en/4x/api.html#router
@@ -25,7 +28,7 @@ module.exports = (entry) => {
     res.jsonp(res.locals.data);
   };
 
-  initPlugins(router, handlerParser);
+  initPlugins(router, mockerParser);
 
   // 所有的请求都会经过这里，可以做一些类似权限控制的事情
   router.all('*', function (req, res, next) {
@@ -35,10 +38,10 @@ module.exports = (entry) => {
 
   // 根据用户配置的路由关系，进行解析
   // console.log('handlerList', handlerList);
-  handlerList.forEach((handlerData) => {
+  mockerList.forEach((mockerData) => {
     // 默认是 get 请求，除非定义 method 字段
-    const METHOD = (handlerData.method || 'get').toLowerCase();
-    const ROUTE_PATH = handlerData.route;
+    const METHOD = (mockerData.method || 'get').toLowerCase();
+    const ROUTE_PATH = mockerData.route;
 
     // http://expressjs.com/en/4x/api.html#router.METHOD
     router[METHOD](ROUTE_PATH, function (req, res, next) {
@@ -78,12 +81,12 @@ module.exports = (entry) => {
 
       // console.log(req.headers.referer)
       // 目前只支持 plugin=mocker 的场景，_m_name=该模块的名字，_m_target=该模块的值对应的名字,_m_disable
-      let paramsFromReferer;
-      try {
-        paramsFromReferer = JSON.parse(util.query('_matman', req.headers.referer)) || [];
-      } catch (e) {
-        paramsFromReferer = [];
-      }
+      let paramsFromReferer = mockerUtil.paramsFromReferer();
+      // try {
+      //   paramsFromReferer = JSON.parse(util.query('_matman', req.headers.referer)) || [];
+      // } catch (e) {
+      //   paramsFromReferer = [];
+      // }
       // let paramsFromReferer = [{
       //   _m_name: 'demo_simple11',
       //   _m_target: 'success',
@@ -96,7 +99,7 @@ module.exports = (entry) => {
 
       // 判断该路由的名字是否在referer中
       let matchedReferer = paramsFromReferer.filter((item) => {
-        return item._m_name === handlerData.name;
+        return item._m_name === mockerData.name;
       })[0];
 
       // console.log('====matchedReferer=====', matchedReferer);
@@ -110,7 +113,7 @@ module.exports = (entry) => {
         if (!isDisable) {
           // 此处要重新获取新的数据，以便取到缓存的。
           // TODO 此处还可以优化，比如及时更新缓存中的数据，而不需要每次都去获取
-          let curMockerData = handlerParser.getHandler(handlerData.name, true);
+          let curMockerData = mockerParser.getHandler(mockerData.name, true);
           isDisable = curMockerData.disable;
         }
       }
@@ -118,7 +121,7 @@ module.exports = (entry) => {
       if (isDisable) {
         // 如果当前禁用了 handle 服务，则不处理
         res.locals.isDisabled = true;
-        res.locals.handlerName = handlerData.name;
+        res.locals.handlerName = mockerData.name;
         next();
       } else {
         let url = ROUTE_PATH;
@@ -129,7 +132,7 @@ module.exports = (entry) => {
         params = _.merge({}, params, req.params, matchedReferer);
 
         // 请求
-        handlerParser.getHandleModuleResultForHttp(url, params, req)
+        mockerParser.getHandleModuleResultForHttp(url, params, req)
           .then((result) => {
             res.append('matman-handler', result.extra.handlerInfo.name);
             res.append('matman-handle-module', result.extra.handleModuleInfo.name);
@@ -243,7 +246,7 @@ module.exports = (entry) => {
   });
 
   // 携带变量出去
-  router._handlerParser = handlerParser;
+  router._handlerParser = mockerParser;
 
   return router;
 };

@@ -8,15 +8,15 @@ global.Promise = require('bluebird');
 // const babelCompileDirectory = require('babel-d');
 
 const matmanServer = require('./server');
-const runConfig = require('./business/run-config');
+const runConfig = require('./config');
 
-const logger = require('./server/logger');
-const matmanLogger = logger.matmanLogger();
-const attentionLogger = logger.attentionLogger();
-
-// 暴露一个全局log变量
-global.matmanLogger = matmanLogger;
-global.attentionLogger = attentionLogger;
+// const logger = require('./server/logger');
+// const matmanLogger = logger.matmanLogger();
+// const attentionLogger = logger.attentionLogger();
+//
+// // 暴露一个全局log变量
+// global.matmanLogger = matmanLogger;
+// global.attentionLogger = attentionLogger;
 
 module.exports = (opts) => {
   //====================================================================================
@@ -37,8 +37,9 @@ module.exports = (opts) => {
   //====================================================================================
   // 3. 初始化日志打印
   //====================================================================================
-  logger.init(configOpts.LOG_PATH);
-  matmanLogger.info(configOpts);
+  // logger.init(configOpts.LOG_PATH);
+  // matmanLogger.info(configOpts);
+  console.log('configOpts:', configOpts);
 
   //====================================================================================
   // 4. 创建服务，并加入 handler 路由
@@ -82,7 +83,7 @@ module.exports = (opts) => {
   // GET /admin/*
   app.get('/admin/*', function (req, res) {
     // res.jsonp({ url2: req.url });
-    res.sendFile(path.join(__dirname, '../www/static', 'index.html'));
+    res.sendFile(path.join(__dirname, '../../www/static', 'index.html'));
   });
 
   // 日志打印模块
@@ -103,13 +104,15 @@ module.exports = (opts) => {
   app.use(routerHandler);
 
   // 触发 onBeforeServerListen 事件
-  const server = require('./plugins/stub/websocket')(configOpts, app, routerHandler._handlerParser);
+  // const server = require('./plugins/stub/websocket')(configOpts, app, routerHandler._handlerParser);
 
-  server.listen(configOpts.port || 3000, () => {
-    matmanLogger.info('matman server is running');
+  app.listen(configOpts.port || 3000, () => {
+    // matmanLogger.info('matman server is running');
+    console.log('matman server is running');
 
     if (configOpts.shouldWatch) {
-      matmanLogger.info('watching files...');
+      // matmanLogger.info('watching files...');
+      console.log('watching files...');
 
       // TODO 文件变化了，需要重启！
     }
