@@ -205,8 +205,9 @@ module.exports = (entry) => {
       }
     };
 
+    // 设置当前请求是被匹配住了，但是因为配置了忽略，因此最终走现网数据，不用 mock
     if (res.locals.isDisabled) {
-      res.append('matman-disable', res.locals.handlerName);
+      res.append('x-matman-disable', res.locals.mockerName);
     }
 
     if (req.method === 'GET' && !isRequested) {
