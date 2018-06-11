@@ -10,7 +10,7 @@ const mockerUtil = require('../../../../../matman/src/mocker/util');
 
 module.exports = (entry) => {
   const mockerParser = new MockerParser({
-    basePath: entry.mockServicePath
+    basePath: entry.mockServerPath
   });
 
   let mockerList = mockerParser.getAllMocker();
