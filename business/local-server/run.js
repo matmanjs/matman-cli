@@ -44,7 +44,7 @@ module.exports = (opts) => {
   //====================================================================================
   // 4. 创建服务，并加入 handler 路由
   //====================================================================================
-  const routerHandler = matmanServer.routerHandler(configOpts);
+  const routerMocker = matmanServer.routerMocker(configOpts);
   const app = matmanServer.create();
   const middlewares = matmanServer.handlerServer();
 
@@ -72,7 +72,7 @@ module.exports = (opts) => {
     // req.params.name = 'standard_cgi'
 
     let handlerName = req.params.name;
-    let curDefinedHandler = routerHandler._handlerParser.getDefinedHandler(handlerName);
+    let curDefinedHandler = routerMocker._handlerParser.getDefinedHandler(handlerName);
     let staticRelativePath = path.join('static', req.params[0]);
 
     if (!curDefinedHandler) {
@@ -105,10 +105,10 @@ module.exports = (opts) => {
   });
 
   // Use handler router
-  app.use(routerHandler);
+  app.use(routerMocker);
 
   // 触发 onBeforeServerListen 事件
-  // const server = require('./plugins/stub/websocket')(configOpts, app, routerHandler._handlerParser);
+  // const server = require('./plugins/stub/websocket')(configOpts, app, routerMocker._handlerParser);
 
   app.listen(configOpts.port || 3000, () => {
     // matmanLogger.info('matman server is running');
