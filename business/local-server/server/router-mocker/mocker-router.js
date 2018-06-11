@@ -11,14 +11,14 @@ module.exports = (router, mockerParser) => {
 
     res.jsonp(mockerList);
   });
-  //
-  // // GET /sys-cgi/mocker/:mockerName 获得这个 mocker 的信息
-  // baseRouter.initGetOne(router, PLUGIN_NAME, HANDLER_NAME_FIELD, (req, res) => {
-  //   let result = mockerParser.getHandler(req.params[HANDLER_NAME_FIELD]);
-  //
-  //   res.jsonp(result);
-  // });
-  //
+
+  // GET /matman-cgi/mocker/:mockerName 获得这个 mocker 的信息
+  baseRouter.initGetOne(router, PLUGIN_NAME, HANDLER_NAME_FIELD, (req, res) => {
+    let result = mockerParser.getMockerByName(req.params[HANDLER_NAME_FIELD]);
+
+    res.jsonp(result);
+  });
+
   // // POST /sys-cgi/mocker/:mockerName 设置这个 mocker 的信息
   // baseRouter.initPostOne(router, PLUGIN_NAME, HANDLER_NAME_FIELD, (req, res) => {
   //   let result = mockerParser.updateHandler(req.params[HANDLER_NAME_FIELD], req.body);

@@ -39,4 +39,41 @@ describe('local-server', () => {
       });
     });
   });
+
+  describe('check /matman-cgi/mocker/:mockerName ', () => {
+    let data;
+
+    before(function () {
+      return request
+        .get('http://localhost:3000/matman-cgi/mocker/name_demo_basic')
+        .then((response) => {
+          data = JSON.parse(response.res.text);
+          // console.log(data);
+        });
+    });
+
+    it('should return object', () => {
+      expect(data).to.be.a('object').and.have.all.keys('basePath', 'name', 'mockModuleList', 'config');
+    });
+
+    it('should exist target.mockModuleList', () => {
+      expect(data.mockModuleList).to.be.a('array').and.have.lengthOf(5);
+    });
+
+    it('should exist target.config', () => {
+      expect(data.config).to.eql({
+        'name': 'name_demo_basic',
+        'route': '/cgi-bin/a/b/demo_basic',
+        'description': 'description_demo_basic',
+        'disable': false,
+        'defaultModule': 'success_1',
+        'activeModule': 'success_1',
+        'method': 'get',
+        'priority': 0,
+        'tags': [
+          '全部'
+        ]
+      });
+    });
+  });
 });
