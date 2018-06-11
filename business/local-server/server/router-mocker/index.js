@@ -39,11 +39,11 @@ module.exports = (entry) => {
 
   // 根据用户配置的路由关系，进行解析
   // console.log('mockerList', mockerList);
-  mockerList.forEach((mockerData) => {
+  mockerList.forEach((mockerItem) => {
     // console.log(mockerData);
 
     // mocker 的配置项在其 config 字段中
-    const mockerConfig = mockerData.config;
+    const mockerConfig = mockerItem.config;
 
     // 判断是否存在 route 字段，如果没有，则不再处理
     const ROUTE_PATH = mockerConfig.route;
@@ -92,35 +92,30 @@ module.exports = (entry) => {
 
       // console.log(req.headers.referer)
 
-      let isDisable;
+      let isDisabled;
 
       // 判断该路由的名字是否在referer中
-      let matchedReferer = mockerUtil.getMatchedReferer(req.headers.referer, mockerData.name);
-      // let matchedReferer = {
-      //   _m_name: 'demo_simple11',
-      //   _m_target: 'success',
-      //   _m_disable: 0
-      // };
-      // console.log('====matchedReferer=====', matchedReferer);
+      let matmanQueryItem = mockerUtil.getMatmanQueryItem(req.headers.referer, mockerItem.name);
+      // console.log('====matmanQueryItem=====', matchedReferer);
 
-      if (matchedReferer) {
+      if (matmanQueryItem) {
         // referer 里面的请求参数拥有最高优先级，因为这种场景比较特殊，主要用于自动化测试之用
-        isDisable = matchedReferer._m_disable;
+        isDisabled = matmanQueryItem.isDisabled();
       } else {
         // 从请求 req 或者 config.json 文件中检查当前请求是否需要禁用 mock 服务
-        isDisable = req.query._m_disable || req.body._m_disable;
-        if (!isDisable) {
+        isDisabled = req.query._m_disable || req.body._m_disable;
+        if (!isDisabled) {
           // 此处要重新获取新的数据，以便取到缓存的。
           // TODO 此处还可以优化，比如及时更新缓存中的数据，而不需要每次都去获取
-          let curMockerData = mockerParser.getMockerByName(mockerData.name, true);
-          isDisable = curMockerData.disable;
+          let curMockerData = mockerParser.getMockerByName(mockerItem.name, true);
+          isDisabled = curMockerData.disable;
         }
       }
 
-      if (isDisable) {
+      if (isDisabled) {
         // 如果当前禁用了 handle 服务，则不处理
         res.locals.isDisabled = true;
-        res.locals.mockerName = mockerData.name;
+        res.locals.mockerName = mockerItem.name;
         next();
       } else {
         let url = ROUTE_PATH;
@@ -128,12 +123,12 @@ module.exports = (entry) => {
 
         // 还要合并一下来自 url path 中的参数值
         // referer 里面的请求参数拥有最高优先级，因为这种场景比较特殊，主要用于自动化测试之用
-        params = _.merge({}, params, req.params, matchedReferer);
+        params = _.merge({}, params, req.params, matmanQueryItem);
 
         const resInfo = mockerParser.getResInfoByRoute(url, params);
 
         if (!resInfo) {
-          let errMsg  = 'Could not get reqInfo by route=' + url + ' and params=' + JSON.stringify(params);
+          let errMsg = 'Could not get reqInfo by route=' + url + ' and params=' + JSON.stringify(params);
           console.error(errMsg);
           res.status(500).send(errMsg);
           return;
