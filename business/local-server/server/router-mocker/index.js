@@ -5,6 +5,7 @@ const request = require('request');
 const bodyParser = require('../body-parser');
 // const HandlerParser = require('../../parser/handler-parser2').default;
 const MockerParser = require('../../../../../matman/src/mocker/MockerParser');
+const matmanQuery = require('../../../../../matman/src/business/matman-query');
 const initPlugins = require('./plugins');
 const mockerUtil = require('../../../../../matman/src/mocker/util');
 
@@ -103,12 +104,12 @@ module.exports = (entry) => {
         isDisabled = matmanQueryItem.isDisabled();
       } else {
         // 从请求 req 或者 config.json 文件中检查当前请求是否需要禁用 mock 服务
-        isDisabled = req.query._m_disable || req.body._m_disable;
+        isDisabled = req.query[matmanQuery.QUERY_KEY] || req.body[matmanQuery.QUERY_KEY];
         if (!isDisabled) {
           // 此处要重新获取新的数据，以便取到缓存的。
           // TODO 此处还可以优化，比如及时更新缓存中的数据，而不需要每次都去获取
-          let curMockerData = mockerParser.getMockerByName(mockerItem.name, true);
-          isDisabled = curMockerData.disable;
+          let curMockerItem = mockerParser.getMockerByName(mockerItem.name, true);
+          isDisabled = curMockerItem.config.disable;
         }
       }
 
