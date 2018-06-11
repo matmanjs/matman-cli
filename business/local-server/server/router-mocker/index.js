@@ -130,22 +130,30 @@ module.exports = (entry) => {
         // referer 里面的请求参数拥有最高优先级，因为这种场景比较特殊，主要用于自动化测试之用
         params = _.merge({}, params, req.params, matchedReferer);
 
-        // 请求
-        mockerParser.getHandleModuleResultForHttp(url, params, req)
+        const resInfo = mockerParser.getResInfoByRoute(url, params);
+
+        if (!resInfo) {
+          let msg = 'Could not get reqInfo by route=' + url + ' and params=' + JSON.stringify(params);
+          console.error(msg);
+          res.status(500).send(msg);
+          return;
+        }
+
+        resInfo.mockModuleItem.getResult(params, req)
           .then((result) => {
-            res.append('matman-handler', result.extra.handlerInfo.name);
-            res.append('matman-handle-module', result.extra.handleModuleInfo.name);
+            res.append('x-matman-mocker', resInfo.mockerItem.name);
+            res.append('x-matman-mock-module', resInfo.mockModuleItem.name);
 
             // 延时返回
-            let delay = result.extra.handleModuleInfo.delay || 0;
-            res.append('matman-delay', delay + '');
+            let delay = resInfo.mockModuleItem.config.delay || 0;
+            res.append('x-matman-delay', delay + '');
 
             if (delay) {
               setTimeout(() => {
-                res.jsonp(result.data);
+                res.jsonp(result);
               }, delay);
             } else {
-              res.jsonp(result.data);
+              res.jsonp(result);
             }
           })
           .catch((err) => {
