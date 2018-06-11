@@ -23,11 +23,7 @@ module.exports = (entry) => {
   router.use(methodOverride());
   router.use(bodyParser);
 
-  // Expose render
-  router.render = (req, res) => {
-    res.jsonp(res.locals.data);
-  };
-
+  // 初始化插件
   initPlugins(router, mockerParser);
 
   // 所有的请求都会经过这里，可以做一些类似权限控制的事情
@@ -37,15 +33,21 @@ module.exports = (entry) => {
   });
 
   // 根据用户配置的路由关系，进行解析
-  // console.log('handlerList', handlerList);
+  // console.log('mockerList', mockerList);
   mockerList.forEach((mockerData) => {
-    console.log(mockerData);
+    // console.log(mockerData);
 
+    // mocker 的配置项在其 config 字段中
     const mockerConfig = mockerData.config;
+
+    // 判断是否存在 route 字段，如果没有，则不再处理
+    const ROUTE_PATH = mockerConfig.route;
+    if (!ROUTE_PATH) {
+      // TODO 返回
+    }
 
     // 默认是 get 请求，除非定义 method 字段
     const METHOD = (mockerConfig.method || 'get').toLowerCase();
-    const ROUTE_PATH = mockerConfig.route;
 
     // http://expressjs.com/en/4x/api.html#router.METHOD
     router[METHOD](ROUTE_PATH, function (req, res, next) {
