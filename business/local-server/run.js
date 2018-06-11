@@ -59,6 +59,10 @@ module.exports = (opts) => {
     res.redirect('/');
   });
 
+  app.get('/mytest', function (req, res) {
+    res.send('hello,world!');
+  });
+
   // 静态资源的配置
   // TODO 此处还需要支持 reporter 等场景
   // GET /admin/mockers/mocker/:name/static/* 静态资源

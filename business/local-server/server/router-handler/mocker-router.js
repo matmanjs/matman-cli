@@ -5,12 +5,12 @@ const HANDLER_NAME_FIELD = 'mockerName';
 
 module.exports = (router, mockerParser) => {
 
-  // // GET /sys-cgi/mocker 所有的 mocker 列表信息
-  // baseRouter.initGetList(router, PLUGIN_NAME, (req, res) => {
-  //   let mockerList = mockerParser.getHandlerListByPlugin(PLUGIN_NAME);
-  //
-  //   res.jsonp(mockerList);
-  // });
+  // GET /sys-cgi/mocker 所有的 mocker 列表信息
+  baseRouter.initGetList(router, PLUGIN_NAME, (req, res) => {
+    let mockerList = mockerParser.getAllMocker();
+
+    res.jsonp(mockerList);
+  });
   //
   // // GET /sys-cgi/mocker/:mockerName 获得这个 mocker 的信息
   // baseRouter.initGetOne(router, PLUGIN_NAME, HANDLER_NAME_FIELD, (req, res) => {
