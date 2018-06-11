@@ -79,7 +79,7 @@ describe('local-server', () => {
     });
   });
 
-  describe('check http://localhost:3000/cgi-bin/a/b/demo_basic ', () => {
+  describe('return active module result', () => {
     let data;
 
     before(function () {
@@ -98,6 +98,25 @@ describe('local-server', () => {
           'result': 1,
           'other': 'other'
         }
+      });
+    });
+  });
+
+  describe('return target mock module result', () => {
+    let data;
+
+    before(function () {
+      return request
+        .get('http://localhost:3000/cgi-bin/a/b/demo_basic?_m_target=success_2')
+        .then((response) => {
+          data = JSON.parse(response.res.text);
+          // console.log(data);
+        });
+    });
+
+    it('should return correct data', () => {
+      expect(data).to.eql({
+        "result": 2
       });
     });
   });
