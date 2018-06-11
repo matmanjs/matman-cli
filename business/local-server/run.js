@@ -87,7 +87,7 @@ module.exports = (opts) => {
   });
 
   // 日志打印模块
-  app.use(logger.connectLogger());
+  // app.use(logger.connectLogger());
 
   // To handle POST, PUT and PATCH you need to use a body-parser
   // You can use the one used by JSON Server

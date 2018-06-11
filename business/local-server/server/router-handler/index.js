@@ -39,9 +39,13 @@ module.exports = (entry) => {
   // 根据用户配置的路由关系，进行解析
   // console.log('handlerList', handlerList);
   mockerList.forEach((mockerData) => {
+    console.log(mockerData);
+
+    const mockerConfig = mockerData.config;
+
     // 默认是 get 请求，除非定义 method 字段
-    const METHOD = (mockerData.method || 'get').toLowerCase();
-    const ROUTE_PATH = mockerData.route;
+    const METHOD = (mockerConfig.method || 'get').toLowerCase();
+    const ROUTE_PATH = mockerConfig.route;
 
     // http://expressjs.com/en/4x/api.html#router.METHOD
     router[METHOD](ROUTE_PATH, function (req, res, next) {
