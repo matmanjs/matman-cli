@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const srcRootPath = path.join(__dirname, './business/local-server/ui/src');
 
 // 编译后的根目录
-const distRootPath = path.resolve(srcRootPath, './public');
+const distRootPath = path.resolve(srcRootPath, '../public');
 
 // index.html 模版的根目录
 const appHtmlPath = path.join(distRootPath, 'index.html');

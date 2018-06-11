@@ -1,6 +1,6 @@
 import './index.less';
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import classnames from 'classnames';
@@ -11,18 +11,18 @@ import { collapseSidebar, unCollapseSidebar, loadMenu } from '../../business/mat
 
 class LayoutSidebar extends Component {
 
-  static propTypes = {
-    menuData: PropTypes.object.isRequired,
-    menuDataMap: PropTypes.object.isRequired,
-    collapse: PropTypes.bool.isRequired,
-    collapseSidebar: PropTypes.func.isRequired,
-    unCollapseSidebar: PropTypes.func.isRequired,
-    loadMenu: PropTypes.func.isRequired,
-  };
+  // static propTypes = {
+  //   menuData: PropTypes.object.isRequired,
+  //   menuDataMap: PropTypes.object.isRequired,
+  //   collapse: PropTypes.bool.isRequired,
+  //   collapseSidebar: PropTypes.func.isRequired,
+  //   unCollapseSidebar: PropTypes.func.isRequired,
+  //   loadMenu: PropTypes.func.isRequired,
+  // };
 
-  static contextTypes = {
-    router: React.PropTypes.object
-  };
+  // static contextTypes = {
+  //   router: React.PropTypes.object
+  // };
 
   constructor(props, context) {
     super(props, context);
