@@ -189,7 +189,7 @@ module.exports = (entry) => {
     // req.body.activeModule = "error_not_login"
 
     // 未匹配到的请求将会来到这里
-    // console.log('[use]', req.url, req.query._m_from);
+    console.log('[use]', req.url, req.query._m_from);
 
     // 判断是否已经是第二次请求了。
     // 请求本地服务的时候，可能会陷入死循环中，因此此处校验最多只请求一次。

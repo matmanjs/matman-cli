@@ -87,7 +87,7 @@ module.exports = (opts) => {
   // GET /admin/*
   app.get('/admin/*', function (req, res) {
     // res.jsonp({ url2: req.url });
-    res.sendFile(path.join(__dirname, '../../www/static', 'index.html'));
+    res.sendFile(path.join(__dirname, './ui/public', 'index.html'));
   });
 
   // 日志打印模块
@@ -109,8 +109,8 @@ module.exports = (opts) => {
 
   // 触发 onBeforeServerListen 事件
   // const server = require('./plugins/stub/websocket')(configOpts, app, routerMocker._handlerParser);
-
-  app.listen(configOpts.port || 3000, () => {
+  const server = require('http').createServer(app);
+  server.listen(configOpts.port || 3000, () => {
     // matmanLogger.info('matman server is running');
     console.log('matman server is running');
 

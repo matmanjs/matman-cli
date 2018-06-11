@@ -14,7 +14,7 @@ module.exports = function (opts) {
   //   ? userDir
   //   : defaultDir;
 
-  const staticDir = path.join(__dirname, '../../www/static');
+  const staticDir = path.join(__dirname, '../ui/public');
 
   opts = objectAssign({ logger: true, static: staticDir }, opts);
 
