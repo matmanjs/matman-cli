@@ -23,6 +23,11 @@ module.exports = (entry) => {
   router.use(methodOverride());
   router.use(bodyParser);
 
+  // Expose render
+  router.render = (req, res) => {
+    res.jsonp(res.locals.data);
+  };
+
   // 初始化插件
   initPlugins(router, mockerParser);
 
@@ -241,6 +246,7 @@ module.exports = (entry) => {
         res.locals.data = {};
       }
 
+      // TODO 2018/6/11 helinjiang: 要优化下这里，正常应该是404的，不知道为什么会走到这里
       router.render(req, res);
     }
 

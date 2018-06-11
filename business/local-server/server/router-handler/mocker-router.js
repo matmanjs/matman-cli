@@ -5,7 +5,7 @@ const HANDLER_NAME_FIELD = 'mockerName';
 
 module.exports = (router, mockerParser) => {
 
-  // GET /sys-cgi/mocker 所有的 mocker 列表信息
+  // GET /matman-cgi/mocker 所有的 mocker 列表信息
   baseRouter.initGetList(router, PLUGIN_NAME, (req, res) => {
     let mockerList = mockerParser.getAllMocker();
 

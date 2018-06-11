@@ -31984,7 +31984,7 @@ webpackJsonp([0],[
 	
 	  return _ref = {}, _ref[_api.CALL_API] = {
 	    types: [MOCKER_REQUEST, MOCKER_REQUEST_SUCCESS, MOCKER_REQUEST_FAIL],
-	    url: '/sys-cgi/mocker/' + mockerName
+	    url: '/matman-cgi/mocker/' + mockerName
 	  }, _ref;
 	}
 	
@@ -31999,7 +31999,7 @@ webpackJsonp([0],[
 	
 	  return _ref2 = {}, _ref2[_api.CALL_API] = {
 	    types: [MOCKER_README_REQUEST, MOCKER_README_REQUEST_SUCCESS, MOCKER_README_REQUEST_FAIL],
-	    url: '/sys-cgi/mocker/' + mockerName + '/readme'
+	    url: '/matman-cgi/mocker/' + mockerName + '/readme'
 	  }, _ref2;
 	}
 	
@@ -32014,7 +32014,7 @@ webpackJsonp([0],[
 	
 	  return _ref3 = {}, _ref3[_api.CALL_API] = {
 	    types: [SET_ACTIVE_MODULE_REQUEST, SET_ACTIVE_MODULE_REQUEST_SUCCESS, SET_ACTIVE_MODULE_REQUEST_FAIL],
-	    url: '/sys-cgi/mocker/' + mockerName,
+	    url: '/matman-cgi/mocker/' + mockerName,
 	    type: 'POST',
 	    data: newMockerState
 	  }, _ref3;
@@ -32126,7 +32126,7 @@ webpackJsonp([0],[
 	
 	  return _ref = {}, _ref[_api.CALL_API] = {
 	    types: [MOCKER_LIST_REQUEST, MOCKER_LIST_REQUEST_SUCCESS, MOCKER_LIST_REQUEST_FAIL],
-	    url: '/sys-cgi/mocker'
+	    url: '/matman-cgi/mocker'
 	  }, _ref;
 	}
 	
@@ -32244,7 +32244,7 @@ webpackJsonp([0],[
 	
 	  return _ref = {}, _ref[_api.CALL_API] = {
 	    types: [REPORTER_REQUEST, REPORTER_REQUEST_SUCCESS, REPORTER_REQUEST_FAIL],
-	    url: '/sys-cgi/reporter/' + reporterName
+	    url: '/matman-cgi/reporter/' + reporterName
 	  }, _ref;
 	}
 	
@@ -32259,7 +32259,7 @@ webpackJsonp([0],[
 	
 	  return _ref2 = {}, _ref2[_api.CALL_API] = {
 	    types: [REPORTER_README_REQUEST, REPORTER_README_REQUEST_SUCCESS, REPORTER_README_REQUEST_FAIL],
-	    url: '/sys-cgi/reporter/' + reporterName + '/readme'
+	    url: '/matman-cgi/reporter/' + reporterName + '/readme'
 	  }, _ref2;
 	}
 	
@@ -32274,7 +32274,7 @@ webpackJsonp([0],[
 	
 	  return _ref3 = {}, _ref3[_api.CALL_API] = {
 	    types: [REPORTER_SET_ACTIVE_MODULE_REQUEST, REPORTER_SET_ACTIVE_MODULE_REQUEST_SUCCESS, REPORTER_SET_ACTIVE_MODULE_REQUEST_FAIL],
-	    url: '/sys-cgi/reporter/' + reporterName,
+	    url: '/matman-cgi/reporter/' + reporterName,
 	    type: 'POST',
 	    data: newReporterState
 	  }, _ref3;
@@ -32386,7 +32386,7 @@ webpackJsonp([0],[
 	
 	  return _ref = {}, _ref[_api.CALL_API] = {
 	    types: [REPORTER_LIST_REQUEST, REPORTER_LIST_REQUEST_SUCCESS, REPORTER_LIST_REQUEST_FAIL],
-	    url: '/sys-cgi/reporter'
+	    url: '/matman-cgi/reporter'
 	  }, _ref;
 	}
 	
@@ -32504,7 +32504,7 @@ webpackJsonp([0],[
 	
 	  return _ref = {}, _ref[_api.CALL_API] = {
 	    types: [STUB_REQUEST, STUB_REQUEST_SUCCESS, STUB_REQUEST_FAIL],
-	    url: '/sys-cgi/stub/' + stubName
+	    url: '/matman-cgi/stub/' + stubName
 	  }, _ref;
 	}
 	
@@ -32519,7 +32519,7 @@ webpackJsonp([0],[
 	
 	  return _ref2 = {}, _ref2[_api.CALL_API] = {
 	    types: [STUB_README_REQUEST, STUB_README_REQUEST_SUCCESS, STUB_README_REQUEST_FAIL],
-	    url: '/sys-cgi/stub/' + stubName + '/readme'
+	    url: '/matman-cgi/stub/' + stubName + '/readme'
 	  }, _ref2;
 	}
 	
@@ -32534,7 +32534,7 @@ webpackJsonp([0],[
 	
 	  return _ref3 = {}, _ref3[_api.CALL_API] = {
 	    types: [SET_ACTIVE_MODULE_REQUEST, SET_ACTIVE_MODULE_REQUEST_SUCCESS, SET_ACTIVE_MODULE_REQUEST_FAIL],
-	    url: '/sys-cgi/stub/' + stubName,
+	    url: '/matman-cgi/stub/' + stubName,
 	    type: 'POST',
 	    data: newStubState
 	  }, _ref3;
@@ -32646,7 +32646,7 @@ webpackJsonp([0],[
 	
 	  return _ref = {}, _ref[_api.CALL_API] = {
 	    types: [STUB_LIST_REQUEST, STUB_LIST_REQUEST_SUCCESS, STUB_LIST_REQUEST_FAIL],
-	    url: '/sys-cgi/stub'
+	    url: '/matman-cgi/stub'
 	  }, _ref;
 	}
 	

@@ -5,7 +5,7 @@
  * @param callback
  */
 function initGetList(router, pluginName, callback) {
-  router.get(`/sys-cgi/${pluginName}`, callback);
+  router.get(`/matman-cgi/${pluginName}`, callback);
 }
 
 /**
@@ -16,7 +16,7 @@ function initGetList(router, pluginName, callback) {
  * @param callback
  */
 function initGetOne(router, pluginName, handlerNameField, callback) {
-  router.get(`/sys-cgi/${pluginName}/:${handlerNameField}`, callback);
+  router.get(`/matman-cgi/${pluginName}/:${handlerNameField}`, callback);
 }
 
 /**
@@ -27,7 +27,7 @@ function initGetOne(router, pluginName, handlerNameField, callback) {
  * @param callback
  */
 function initPostOne(router, pluginName, handlerNameField, callback) {
-  router.post(`/sys-cgi/${pluginName}/:${handlerNameField}`, callback);
+  router.post(`/matman-cgi/${pluginName}/:${handlerNameField}`, callback);
 }
 
 /**
@@ -38,7 +38,7 @@ function initPostOne(router, pluginName, handlerNameField, callback) {
  * @param callback
  */
 function initGetOneReadMe(router, pluginName, handlerNameField, callback) {
-  router.get(`/sys-cgi/${pluginName}/:${handlerNameField}/readme`, callback);
+  router.get(`/matman-cgi/${pluginName}/:${handlerNameField}/readme`, callback);
 }
 
 module.exports = {

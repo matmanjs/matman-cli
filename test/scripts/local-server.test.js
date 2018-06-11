@@ -2,12 +2,12 @@ const request = require('superagent');
 const { expect } = require('chai');
 
 describe('local-server', () => {
-  describe('check /sys-cgi/mocker', () => {
+  describe('check /matman-cgi/mocker', () => {
     let data;
 
     before(function () {
       return request
-        .get('http://localhost:3000/sys-cgi/mocker')
+        .get('http://localhost:3000/matman-cgi/mocker')
         .then((response) => {
           data = JSON.parse(response.res.text);
           // console.log(data);
