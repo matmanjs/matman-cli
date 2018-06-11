@@ -27,6 +27,7 @@ describe('local-server', () => {
       expect(target.config).to.eql({
         'name': 'name_demo_basic',
         'route': '/cgi-bin/a/b/demo_basic',
+        'routeExtra': {},
         'description': 'description_demo_basic',
         'disable': false,
         'defaultModule': 'success_1',
@@ -64,6 +65,7 @@ describe('local-server', () => {
       expect(data.config).to.eql({
         'name': 'name_demo_basic',
         'route': '/cgi-bin/a/b/demo_basic',
+        'routeExtra': {},
         'description': 'description_demo_basic',
         'disable': false,
         'defaultModule': 'success_1',
@@ -73,6 +75,29 @@ describe('local-server', () => {
         'tags': [
           '全部'
         ]
+      });
+    });
+  });
+
+  describe('check http://localhost:3000/cgi-bin/a/b/demo_basic ', () => {
+    let data;
+
+    before(function () {
+      return request
+        .get('http://localhost:3000/cgi-bin/a/b/demo_basic')
+        .then((response) => {
+          data = JSON.parse(response.res.text);
+          // console.log(data);
+        });
+    });
+
+    it('should return correct data', () => {
+      expect(data).to.eql({
+        'retcode': 0,
+        'result': {
+          'result': 1,
+          'other': 'other'
+        }
       });
     });
   });

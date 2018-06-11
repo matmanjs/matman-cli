@@ -133,14 +133,15 @@ module.exports = (entry) => {
         const resInfo = mockerParser.getResInfoByRoute(url, params);
 
         if (!resInfo) {
-          let msg = 'Could not get reqInfo by route=' + url + ' and params=' + JSON.stringify(params);
-          console.error(msg);
-          res.status(500).send(msg);
+          let errMsg  = 'Could not get reqInfo by route=' + url + ' and params=' + JSON.stringify(params);
+          console.error(errMsg);
+          res.status(500).send(errMsg);
           return;
         }
 
         resInfo.mockModuleItem.getResult(params, req)
           .then((result) => {
+            // 增加特定标记，以便抓包时能够识别是否为打桩数据
             res.append('x-matman-mocker', resInfo.mockerItem.name);
             res.append('x-matman-mock-module', resInfo.mockModuleItem.name);
 
