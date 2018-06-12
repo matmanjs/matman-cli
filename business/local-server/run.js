@@ -44,9 +44,9 @@ module.exports = (opts) => {
   //====================================================================================
   // 4. 创建服务，并加入 handler 路由
   //====================================================================================
-  const routerMocker = matmanServer.routerMocker(configOpts);
+  const routerMocker = matmanServer.router(configOpts);
   const app = matmanServer.create();
-  const middlewares = matmanServer.handlerServer();
+  const middlewares = matmanServer.middleware();
 
   // Set default middlewares (logger, static, cors and no-cache)
   app.use(middlewares);
