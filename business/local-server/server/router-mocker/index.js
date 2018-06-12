@@ -92,6 +92,7 @@ module.exports = (entry) => {
       // req.params.id = "1"
 
       // console.log(req.headers.referer)
+        res.header('Access-Control-Allow-Origin', '*');
 
       let isDisabled;
 

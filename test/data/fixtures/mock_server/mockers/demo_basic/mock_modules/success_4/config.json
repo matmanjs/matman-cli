@@ -1,4 +1,7 @@
 {
+  "version": "1.23",
+  "description": "我是success_4的描述",
+  "author": "linjianghe",
   "priority": 10,
   "query": {
     "type": 1
