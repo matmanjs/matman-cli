@@ -1,4 +1,4 @@
-const mockerRouter = require('./mocker-router');
+const mockerRouter = require('./mocker/router');
 // const reporterRouter = require('../../plugins/reporter/router');
 // const stubRouter = require('../../plugins/stub/router');
 
