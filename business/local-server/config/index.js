@@ -46,8 +46,8 @@ function getConfigOpts(opts) {
   // 日志文件存储的路径，默认值为 ${basePath}/logs
   configOpts.LOG_PATH = configOpts.LOG_PATH || path.join(configOpts.basePath, 'logs');
 
-  // matman 启动之后的服务端口号，默认为 3000
-  configOpts.port = configOpts.port || 3000;
+  // matman 启动之后的服务端口号，默认为 9527
+  configOpts.port = configOpts.port || 9527;
 
   return configOpts;
 }

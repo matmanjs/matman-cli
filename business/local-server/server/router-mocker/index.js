@@ -61,7 +61,7 @@ module.exports = (entry) => {
 
       // post 请求
       // handlerData.route="/cgi-bin/a/b/post_cgi"
-      // post http://localhost:3000/cgi-bin/a/b/post_cgi data={activeModule:"error_not_login"}
+      // post http://localhost:9527/cgi-bin/a/b/post_cgi data={activeModule:"error_not_login"}
       // req.baseUrl=""
       // req.originalUrl="/cgi-bin/a/b/post_cgi"
       // req.url="/cgi-bin/a/b/post_cgi"
@@ -72,7 +72,7 @@ module.exports = (entry) => {
 
       // get 请求
       // handlerData.route="/cgi-bin/a/b/simple_cgi"
-      // get http://localhost:3000/cgi-bin/a/b/simple_cgi?activeModule=error_not_login
+      // get http://localhost:9527/cgi-bin/a/b/simple_cgi?activeModule=error_not_login
       // req.baseUrl=""
       // req.originalUrl="/cgi-bin/a/b/simple_cgi?activeModule=error_not_login"
       // req.url="/cgi-bin/a/b/simple_cgi?activeModule=error_not_login"
@@ -82,7 +82,7 @@ module.exports = (entry) => {
 
       // get 请求且route为匹配类型
       // handlerData.route="/cgi-bin/a/b/id/:id"
-      // get http://localhost:3000/cgi-bin/a/b/id/1?activeModule=error_not_login
+      // get http://localhost:9527/cgi-bin/a/b/id/1?activeModule=error_not_login
       // req.baseUrl=""
       // req.originalUrl="/cgi-bin/a/b/id/1?activeModule=error_not_login"
       // req.url="/cgi-bin/a/b/id/1?activeModule=error_not_login"
@@ -168,8 +168,8 @@ module.exports = (entry) => {
 
   router.use((req, res) => {
     // get 请求
-    // get http://localhost:3000/cgi-bin/a/b/not_exist_cgi?activeModule=error_not_login
-    // req.headers.host="localhost:3000"
+    // get http://localhost:9527/cgi-bin/a/b/not_exist_cgi?activeModule=error_not_login
+    // req.headers.host="localhost:9527"
     // req.params[0]="/cgi-bin/a/b/not_exist_cgi"
     // req.baseUrl=""
     // req.originalUrl="/cgi-bin/a/b/not_exist_cgi?activeModule=error_not_login"
@@ -179,7 +179,7 @@ module.exports = (entry) => {
     // req.query.activeModule = "error_not_login"
 
     // post 请求
-    // post http://localhost:3000/cgi-bin/a/b/not_exist_cgi data={activeModule:"error_not_login"}
+    // post http://localhost:9527/cgi-bin/a/b/not_exist_cgi data={activeModule:"error_not_login"}
     // req.params[0]="/cgi-bin/a/b/not_exist_cgi"
     // req.baseUrl=""
     // req.originalUrl="/cgi-bin/a/b/not_exist_cgi"

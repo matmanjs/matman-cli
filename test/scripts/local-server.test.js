@@ -7,7 +7,7 @@ describe('local-server', () => {
 
     before(function () {
       return request
-        .get('http://localhost:3000/matman-cgi/mocker')
+        .get('http://localhost:9527/matman-cgi/mocker')
         .then((response) => {
           data = JSON.parse(response.res.text);
           // console.log(data);
@@ -46,7 +46,7 @@ describe('local-server', () => {
 
     before(function () {
       return request
-        .get('http://localhost:3000/matman-cgi/mocker/name_demo_basic')
+        .get('http://localhost:9527/matman-cgi/mocker/name_demo_basic')
         .then((response) => {
           data = JSON.parse(response.res.text);
           // console.log(data);
@@ -84,7 +84,7 @@ describe('local-server', () => {
 
     before(function () {
       return request
-        .get('http://localhost:3000/cgi-bin/a/b/demo_basic')
+        .get('http://localhost:9527/cgi-bin/a/b/demo_basic')
         .then((response) => {
           data = JSON.parse(response.res.text);
           // console.log(data);
@@ -107,7 +107,7 @@ describe('local-server', () => {
 
     before(function () {
       return request
-        .get('http://localhost:3000/cgi-bin/a/b/demo_basic?_m_target=success_2')
+        .get('http://localhost:9527/cgi-bin/a/b/demo_basic?_m_target=success_2')
         .then((response) => {
           data = JSON.parse(response.res.text);
           // console.log(data);

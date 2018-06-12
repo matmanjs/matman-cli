@@ -66,7 +66,7 @@ module.exports = (opts) => {
   // 静态资源的配置
   // TODO 此处还需要支持 reporter 等场景
   // GET /admin/mockers/mocker/:name/static/* 静态资源
-  // http://localhost:3000/admin/mockers/mocker/standard_cgi/static/subdir/3.png
+  // http://localhost:9527/admin/mockers/mocker/standard_cgi/static/subdir/3.png
   app.get('/admin/mockers/mocker/:name/static/*', (req, res) => {
     // req.params[0] = 'subdir/3.png'
     // req.params.name = 'standard_cgi'
@@ -110,7 +110,7 @@ module.exports = (opts) => {
   // 触发 onBeforeServerListen 事件
   // const server = require('./plugins/stub/websocket')(configOpts, app, routerMocker._handlerParser);
   const server = require('http').createServer(app);
-  server.listen(configOpts.port || 3000, () => {
+  server.listen(configOpts.port || 9527, () => {
     // matmanLogger.info('matman server is running');
     console.log('matman server is running');
 
