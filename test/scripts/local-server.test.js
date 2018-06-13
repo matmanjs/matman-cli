@@ -120,4 +120,24 @@ describe('local-server', () => {
       });
     });
   });
+
+  describe('return readme content', () => {
+    it('should exist content', () => {
+      return request
+        .get('http://localhost:9527/matman-cgi/mocker/demo_03/readme')
+        .then((response) => {
+          let data = JSON.parse(response.res.text);
+          expect(data.html).to.have.lengthOf.at.least(100);
+        });
+    });
+
+    it('should be empty', () => {
+      return request
+        .get('http://localhost:9527/matman-cgi/mocker/demo_01/readme')
+        .then((response) => {
+          let data = JSON.parse(response.res.text);
+          expect(data.html).to.be.empty;
+        });
+    });
+  });
 });
