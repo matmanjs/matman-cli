@@ -47,13 +47,14 @@
         "description": "demo_01",
         "disable": false,
         "defaultModule": "",
-        "activeModule": "error",
+        "activeModule": "success",
         "method": "get",
         "priority": 0,
         "tags": [
           "全部"
         ]
-      }
+      },
+      "createdAt": 1528889094486
     },
     {
       "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_service/mockers/demo_02",
