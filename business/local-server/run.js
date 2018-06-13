@@ -82,11 +82,11 @@ module.exports = (opts) => {
     }
   });
 
-  // 单页应用，因此只要是 /admin/* 的都加载静态html页面
-  // GET /admin/*
-  app.get('/admin/*', function (req, res) {
+  // 单页应用，因此只要是 /matman-admin/* 的都加载静态html页面
+  // GET /matman-admin/*
+  app.get('/matman-admin/*', function (req, res) {
     // res.jsonp({ url2: req.url });
-    res.sendFile(path.join(__dirname, './ui/public', 'index.html'));
+    res.sendFile(path.join(__dirname, './public', 'index.html'));
   });
 
   // 日志打印模块
