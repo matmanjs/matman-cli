@@ -36,12 +36,12 @@ module.exports = (router, entry) => {
     res.jsonp(result);
   });
 
-  // // GET /sys-cgi/mocker/:mockerName/readme 获得这个 mocker 的 readme 信息
-  // baseRouter.initGetOneReadMe(router, PLUGIN_NAME, HANDLER_NAME_FIELD, (req, res) => {
-  //   res.jsonp({
-  //     html: mockerParser.getReadMeContent(req.params[HANDLER_NAME_FIELD])
-  //   });
-  // });
+  // GET /matman-cgi/mocker/:mockerName/readme 获得这个 mocker 的 readme 信息
+  baseRouter.initGetOneReadMe(router, PLUGIN_NAME, HANDLER_NAME_FIELD, (req, res) => {
+    res.jsonp({
+      html: mockerParser.getReadMeContent(req.params[HANDLER_NAME_FIELD])
+    });
+  });
 
   // 根据用户配置的路由关系，进行解析
   // console.log('mockerList', mockerList);
