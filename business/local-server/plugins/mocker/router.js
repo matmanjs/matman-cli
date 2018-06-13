@@ -29,12 +29,12 @@ module.exports = (router, entry) => {
     res.jsonp(result);
   });
 
-  // POST /sys-cgi/mocker/:mockerName 设置这个 mocker 的信息
-  // baseRouter.initPostOne(router, PLUGIN_NAME, HANDLER_NAME_FIELD, (req, res) => {
-  //   let result = mockerParser.updateHandler(req.params[HANDLER_NAME_FIELD], req.body);
-  //
-  //   res.jsonp(result);
-  // });
+  // POST /matman-cgi/mocker/:mockerName 设置这个 mocker 的信息
+  baseRouter.initPostOne(router, PLUGIN_NAME, HANDLER_NAME_FIELD, (req, res) => {
+    let result = mockerParser.updateMocker(req.params[HANDLER_NAME_FIELD], req.body);
+
+    res.jsonp(result);
+  });
 
   // // GET /sys-cgi/mocker/:mockerName/readme 获得这个 mocker 的 readme 信息
   // baseRouter.initGetOneReadMe(router, PLUGIN_NAME, HANDLER_NAME_FIELD, (req, res) => {
