@@ -54,9 +54,9 @@ module.exports = (opts) => {
   //====================================================================================
   // 5. matman 管理系统中使用的路由配置
   //====================================================================================
-  // GET /admin，跳转到 /
-  app.get('/admin', function (req, res) {
-    res.redirect('/');
+  // GET /，跳转到 /matman-admin/
+  app.get('/', function (req, res) {
+    res.redirect('/matman-admin/');
   });
 
   app.get('/mytest', function (req, res) {
@@ -65,22 +65,21 @@ module.exports = (opts) => {
 
   // 静态资源的配置
   // TODO 此处还需要支持 reporter 等场景
-  // GET /admin/mockers/mocker/:name/static/* 静态资源
-  // http://localhost:9527/admin/mockers/mocker/standard_cgi/static/subdir/3.png
-  app.get('/admin/mockers/mocker/:name/static/*', (req, res) => {
-    // req.params[0] = 'subdir/3.png'
-    // req.params.name = 'standard_cgi'
+  // GET /matman-admin/mockers/:name/static/* 静态资源
+  // http://localhost:9527/matman-admin/mockers/demo_03/static/sub/workflow.png
+  app.get('/matman-admin/mockers/:name/static/*', (req, res) => {
+    // req.params[0] = 'sub/workflow.png'
+    // req.params.name = 'demo_03'
 
-    let handlerName = req.params.name;
-    let curDefinedHandler = routerMocker._handlerParser.getDefinedHandler(handlerName);
+    let mockerName = req.params.name;
+    let mockerItem = routerMocker._mockerParser.getMockerByName(mockerName);
     let staticRelativePath = path.join('static', req.params[0]);
 
-    if (!curDefinedHandler) {
-      res.send(`Can not find ${path.join(handlerName, staticRelativePath)}`);
+    if (!mockerItem) {
+      res.send(`Can not find ${path.join(mockerName, staticRelativePath)}`);
     } else {
-      res.sendFile(path.join(curDefinedHandler.PATH, staticRelativePath));
+      res.sendFile(path.join(mockerItem.basePath, staticRelativePath));
     }
-
   });
 
   // 单页应用，因此只要是 /admin/* 的都加载静态html页面

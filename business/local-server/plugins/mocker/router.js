@@ -172,4 +172,6 @@ module.exports = (router, entry) => {
     });
   });
 
+  // 携带变量出去
+  router._mockerParser = mockerParser;
 };
