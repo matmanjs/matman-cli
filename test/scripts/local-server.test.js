@@ -161,7 +161,7 @@ describe('local-server', () => {
 
           expect(response.status).to.equal(200);
           expect(response.type).to.equal('image/png');
-          expect(response.body.length).to.equal(21871);
+          expect(response.body.length).to.equal(21869);
         });
     });
 
