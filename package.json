@@ -5,7 +5,9 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "node ./bin/matman",
+    "dev-ui": "cd ./business/local-server/webui && npm run start",
     "build-ui": "cd ./business/local-server/webui && npm run build",
+    "prepublishOnly": "npm run build-ui",
     "test": "mocha"
   },
   "repository": {

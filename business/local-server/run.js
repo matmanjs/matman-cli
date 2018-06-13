@@ -86,7 +86,7 @@ module.exports = (opts) => {
   // GET /matman-admin/*
   app.get('/matman-admin/*', function (req, res) {
     // res.jsonp({ url2: req.url });
-    res.sendFile(path.join(__dirname, './public', 'index.html'));
+    res.sendFile(path.join(__dirname, './webui/build', 'index.html'));
   });
 
   // 日志打印模块
