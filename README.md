@@ -35,11 +35,11 @@ npm install matman-cli -g
 - 将 mocker 序列化
 
 
-#### matman server start
+#### matman start [--config]
 
 启动本地服务
 
 
-#### matman server stop
+#### matman stop
 
 停止本地服务
