@@ -1,8 +1,10 @@
 const _ = require('lodash');
 const baseRouter = require('../../server/router/base-router');
-const MockerParser = require('../../../../../matman/src/mocker/MockerParser');
-const matmanQuery = require('../../../../../matman/src/business/matman-query');
-const mockerUtil = require('../../../../../matman/src/mocker/util');
+const matman = require('../../../../business/matman');
+
+const MockerParser = matman.MockerParser;
+const matmanQuery = matman.matmanQuery;
+const mockerUtil = matman.mockerUtil;
 
 const PLUGIN_NAME = 'mocker';
 const HANDLER_NAME_FIELD = 'mockerName';

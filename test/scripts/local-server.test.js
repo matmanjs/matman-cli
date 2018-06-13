@@ -14,29 +14,27 @@ describe('local-server', () => {
         });
     });
 
-    it('should return array and length is 2', () => {
-      expect(data).to.be.a('array').and.have.lengthOf(2);
+    it('should return array and length is 3', () => {
+      expect(data).to.be.a('array').and.have.lengthOf(3);
     });
 
-    it('should exist name_demo_basic', () => {
-      let filterResult = data.filter(item => item.name === 'name_demo_basic');
+    it('should exist demo_03', () => {
+      let filterResult = data.filter(item => item.name === 'demo_03');
       let target = filterResult[0];
 
       expect(filterResult).to.be.a('array').and.have.lengthOf(1);
-      expect(target.mockModuleList).to.be.a('array').and.have.lengthOf(5);
+      expect(target.mockModuleList).to.be.a('array').and.have.lengthOf(3);
       expect(target.config).to.eql({
-        'name': 'name_demo_basic',
-        'route': '/cgi-bin/a/b/demo_basic',
-        'routeExtra': {},
-        'description': 'description_demo_basic',
-        'disable': false,
-        'defaultModule': 'success_1',
-        'activeModule': 'success_1',
-        'method': 'get',
-        'priority': 0,
-        'tags': [
-          '全部'
-        ]
+        name: 'demo_03',
+        route: '/cgi-bin/a/b/demo_03',
+        routeExtra: {},
+        description: 'description for demo_03',
+        disable: false,
+        defaultModule: 'success_1',
+        activeModule: 'success_1',
+        method: 'get',
+        priority: 0,
+        tags: ['全部']
       });
     });
   });
@@ -46,7 +44,7 @@ describe('local-server', () => {
 
     before(function () {
       return request
-        .get('http://localhost:9527/matman-cgi/mocker/name_demo_basic')
+        .get('http://localhost:9527/matman-cgi/mocker/demo_03')
         .then((response) => {
           data = JSON.parse(response.res.text);
           // console.log(data);
@@ -58,23 +56,21 @@ describe('local-server', () => {
     });
 
     it('should exist target.mockModuleList', () => {
-      expect(data.mockModuleList).to.be.a('array').and.have.lengthOf(5);
+      expect(data.mockModuleList).to.be.a('array').and.have.lengthOf(3);
     });
 
     it('should exist target.config', () => {
       expect(data.config).to.eql({
-        'name': 'name_demo_basic',
-        'route': '/cgi-bin/a/b/demo_basic',
-        'routeExtra': {},
-        'description': 'description_demo_basic',
-        'disable': false,
-        'defaultModule': 'success_1',
-        'activeModule': 'success_1',
-        'method': 'get',
-        'priority': 0,
-        'tags': [
-          '全部'
-        ]
+        name: 'demo_03',
+        route: '/cgi-bin/a/b/demo_03',
+        routeExtra: {},
+        description: 'description for demo_03',
+        disable: false,
+        defaultModule: 'success_1',
+        activeModule: 'success_1',
+        method: 'get',
+        priority: 0,
+        tags: ['全部']
       });
     });
   });
@@ -84,7 +80,7 @@ describe('local-server', () => {
 
     before(function () {
       return request
-        .get('http://localhost:9527/cgi-bin/a/b/demo_basic')
+        .get('http://localhost:9527/cgi-bin/a/b/demo_03')
         .then((response) => {
           data = JSON.parse(response.res.text);
           // console.log(data);
@@ -96,7 +92,7 @@ describe('local-server', () => {
         'retcode': 0,
         'result': {
           'result': 1,
-          'other': 'other'
+          'other': 'demo_03_other'
         }
       });
     });
@@ -107,7 +103,7 @@ describe('local-server', () => {
 
     before(function () {
       return request
-        .get('http://localhost:9527/cgi-bin/a/b/demo_basic?_m_target=success_2')
+        .get('http://localhost:9527/cgi-bin/a/b/demo_03?_m_target=success_2')
         .then((response) => {
           data = JSON.parse(response.res.text);
           // console.log(data);
@@ -116,7 +112,11 @@ describe('local-server', () => {
 
     it('should return correct data', () => {
       expect(data).to.eql({
-        "result": 2
+        'retcode': 0,
+        'result': {
+          'result': 2,
+          'other': 'demo_03_other'
+        }
       });
     });
   });

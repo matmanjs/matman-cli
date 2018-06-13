@@ -1,4 +1,4 @@
-const Mocker = require('../../../../../../../matman/src/mocker/Mocker');
+const { Mocker } = require('../../../../../../business/matman');
 
 module.exports = new Mocker(__dirname);
 
