@@ -140,4 +140,30 @@ describe('local-server', () => {
         });
     });
   });
+
+  describe('check static resource', () => {
+
+    it('should support jpg ', () => {
+      return request
+        .get('http://localhost:9527/matman-admin/mockers/demo_03/static/logo.jpg')
+        .then((response) => {
+
+          expect(response.status).to.equal(200);
+          expect(response.type).to.equal('image/jpeg');
+          expect(response.body.length).to.equal(2615);
+        });
+    });
+
+    it('should support subdir and png', () => {
+      return request
+        .get('http://localhost:9527/matman-admin/mockers/demo_03/static/sub/workflow.png')
+        .then((response) => {
+
+          expect(response.status).to.equal(200);
+          expect(response.type).to.equal('image/png');
+          expect(response.body.length).to.equal(21871);
+        });
+    });
+
+  });
 });
