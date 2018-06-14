@@ -42,3 +42,6 @@ jspm_packages
 *-lock.json
 
 coverage/
+
+dist
+dist-client-script

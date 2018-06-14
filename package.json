@@ -1,18 +1,18 @@
 {
   "name": "matman-cli",
-  "version": "0.3.6",
-  "description": "Simple CLI for MatMan projects",
+  "version": "1.0.0",
+  "description": "CLI for MatMan projects",
   "main": "lib/index.js",
   "scripts": {
     "start": "node ./bin/matman",
-    "commitmsg": "validate-commit-msg",
-    "commit": "git-cz ",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "test": "mocha --compilers js:babel-core/register"
+    "dev-ui": "cd ./business/local-server/webui && npm run start",
+    "build-ui": "cd ./business/local-server/webui && npm run build",
+    "prepublishOnly": "npm run build-ui",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/helinjiang/matman-cli.git"
+    "url": "git+https://github.com/matmanjs/matman-cli.git"
   },
   "keywords": [
     "matman",
@@ -27,9 +27,9 @@
     "matman": "./bin/matman"
   },
   "bugs": {
-    "url": "https://github.com/helinjiang/matman-cli/issues"
+    "url": "https://github.com/matmanjs/matman-cli/issues"
   },
-  "homepage": "https://github.com/helinjiang/matman-cli#readme",
+  "homepage": "https://github.com/matmanjs/matman-cli#readme",
   "configs": {
     "compatibleVersion": ">=0.3.0"
   },
@@ -38,37 +38,40 @@
     "bluebird": "^3.5.0",
     "bunyan": "^1.8.12",
     "chalk": "^2.3.2",
-    "co": "^4.6.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
     "cross-spawn": "^5.1.0",
     "easy-table": "^1.1.1",
+    "errorhandler": "^1.5.0",
+    "express": "^4.16.3",
     "figlet": "^1.2.0",
     "fs-extra": "^5.0.0",
     "hexo-fs": "^0.2.3",
     "inquirer": "^3.0.6",
     "js-yaml": "^3.11.0",
+    "log4js": "^2.8.0",
+    "matman": "^2.0.1",
     "matman-core": "^0.1.5",
     "meow": "^3.7.0",
+    "method-override": "^2.3.10",
     "minimist": "^1.2.0",
+    "morgan": "^1.9.0",
     "ora": "^1.4.0",
     "os": "^0.1.1",
     "osenv": "^0.1.4",
+    "pfork": "^0.1.8",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
     "semver": "^5.4.1",
+    "string-replace-webpack-plugin": "^0.1.3",
+    "superagent": "^3.8.3",
+    "webpack": "^3.12.0",
     "yeoman-environment": "^1.6.6",
     "yeoman-generator": "^2.0.3"
   },
   "devDependencies": {
     "chai": "^4.1.1",
-    "chai-as-promised": "^7.1.1",
-    "codecov": "^2.3.0",
-    "commitizen": "^2.3.0",
-    "conventional-changelog-cli": "^1.2.0",
-    "eslint": "^4.11.0",
-    "husky": "^0.13.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.5.0",
-    "sinon": "^3.2.1",
-    "validate-commit-msg": "^2.11.1"
+    "mocha": "^3.5.0"
   }
 }
