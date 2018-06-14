@@ -3,7 +3,7 @@ const baseRouter = require('../../server/router/base-router');
 const matman = require('../../../../business/matman');
 
 const MockerParser = matman.MockerParser;
-const matmanQuery = matman.matmanQuery;
+const QUERY_KEY = matman.QUERY_KEY;
 const mockerUtil = matman.mockerUtil;
 
 const PLUGIN_NAME = 'mocker';
@@ -105,14 +105,13 @@ module.exports = (router, entry) => {
 
       // 判断该路由的名字是否在referer中
       let matmanQueryItem = mockerUtil.getMatmanQueryItem(req.headers.referer, mockerItem.name);
-      // console.log('====matmanQueryItem=====', matchedReferer);
 
       if (matmanQueryItem) {
         // referer 里面的请求参数拥有最高优先级，因为这种场景比较特殊，主要用于自动化测试之用
         isDisabled = matmanQueryItem.isDisabled();
       } else {
         // 从请求 req 或者 config.json 文件中检查当前请求是否需要禁用 mock 服务
-        isDisabled = req.query[matmanQuery.QUERY_KEY] || req.body[matmanQuery.QUERY_KEY];
+        isDisabled = req.query[QUERY_KEY] || req.body[QUERY_KEY];
         if (!isDisabled) {
           // 此处要重新获取新的数据，以便取到缓存的。
           // TODO 此处还可以优化，比如及时更新缓存中的数据，而不需要每次都去获取
