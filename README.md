@@ -25,7 +25,7 @@ npm install matman-cli -g
 
 ### 命令
 
-#### matman build [path][--dev]
+#### matman build [path]
 
 构建命令，将 matman 项目构建为完整可运行的项目，以便 `matman start` 命令能够直接运行。
 
@@ -37,9 +37,6 @@ npm install matman-cli -g
 
 #### matman start [--config]
 
-启动本地服务
+启动本地服务。如果不传入 `config` 参数选项，则会在当前目录寻找 `matman.config.js` 配置文件。
 
 
-#### matman stop
-
-停止本地服务
