@@ -1,37 +1,40 @@
 {
-  "mockServerPath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_server/mockers",
+  "mockServerPath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers",
   "dataPath": "/Users/helinjiang/gitprojects/matman-cli/test/data/demo_03/app",
   "data": [
     {
-      "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_server/mockers/demo_01",
-      "name": "demo_01",
+      "basePath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers/check_pay_status",
+      "name": "check_pay_status",
       "mockModuleList": [
         {
-          "name": "error",
-          "module": {
-            "errCode": 100000
-          },
+          "name": "error_10000",
           "config": {
-            "name": "error",
-            "description": "error",
+            "name": "error_10000",
+            "description": "需要认证",
             "priority": 0,
             "delay": 0,
             "query": {
-              "_m_target": "error"
+              "_m_target": "error_10000"
+            }
+          }
+        },
+        {
+          "name": "error_10001",
+          "config": {
+            "name": "error_10001",
+            "description": "查询失败",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_10001"
             }
           }
         },
         {
           "name": "success",
-          "module": {
-            "errCode": 0,
-            "result": {
-              "description": "demo_01 success.json"
-            }
-          },
           "config": {
             "name": "success",
-            "description": "success",
+            "description": "已完成了认证",
             "priority": 0,
             "delay": 0,
             "query": {
@@ -41,169 +44,615 @@
         }
       ],
       "config": {
-        "name": "demo_01",
-        "route": "/cgi-bin/a/b/demo_01",
+        "name": "check_pay_status",
+        "route": "/cgi/qq_sport/inner/weishi/check_pay_status",
         "routeExtra": {},
-        "description": "demo_01",
+        "description": "查询是否认证过",
         "disable": false,
-        "defaultModule": "",
+        "defaultModule": "success",
         "activeModule": "success",
         "method": "get",
         "priority": 0,
         "tags": [
-          "全部"
+          "全部",
+          "linjianghe",
+          "余额页",
+          "提现页",
+          "常规红包"
         ]
       }
     },
     {
-      "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_server/mockers/demo_02",
-      "name": "demo_02_renamed",
+      "basePath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers/query_money",
+      "name": "query_money",
       "mockModuleList": [
         {
-          "name": "error",
-          "module": {
-            "errCode": 100000
-          },
+          "name": "error_25_overtime",
           "config": {
-            "name": "error",
-            "description": "error",
+            "name": "error_25_overtime",
+            "description": "已过期",
             "priority": 0,
             "delay": 0,
             "query": {
-              "_m_target": "error"
+              "_m_target": "error_25_overtime"
             }
           }
         },
         {
-          "name": "success_1",
+          "name": "error_not_login",
           "config": {
-            "name": "success_1",
-            "description": "success_1",
+            "name": "error_not_login",
+            "description": "convert weishi openid to qq error",
             "priority": 0,
             "delay": 0,
             "query": {
-              "_m_target": "success_1"
+              "_m_target": "error_not_login"
             }
           }
         },
         {
-          "name": "success_2",
-          "module": {
-            "result": 2
-          },
+          "name": "success_0",
           "config": {
-            "name": "success_2",
-            "description": "success_2",
+            "name": "success_0",
+            "description": "领取了0元",
             "priority": 0,
             "delay": 0,
             "query": {
-              "_m_target": "success_2"
+              "_m_target": "success_0"
             }
           }
         },
         {
-          "name": "success_3_renamed",
-          "module": {
-            "result": 3
-          },
+          "name": "success_16888",
           "config": {
-            "name": "success_3_renamed",
-            "description": "description_success_3_renamed",
-            "priority": 100,
+            "name": "success_16888",
+            "description": "领取了168.88元",
+            "priority": 0,
             "delay": 0,
             "query": {
-              "_m_target": "success_3_renamed"
+              "_m_target": "success_16888"
             }
           }
         },
         {
-          "name": "success_4",
+          "name": "success_499",
           "config": {
-            "name": "success_4",
-            "description": "success_4",
-            "priority": 10,
+            "name": "success_499",
+            "description": "领取了4.99元",
+            "priority": 0,
             "delay": 0,
             "query": {
-              "type": 1,
-              "_m_target": "success_4"
+              "_m_target": "success_499"
+            }
+          }
+        },
+        {
+          "name": "success_500",
+          "config": {
+            "name": "success_500",
+            "description": "领取了5.00元",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success_500"
             }
           }
         }
       ],
       "config": {
-        "name": "demo_02_renamed",
-        "route": "/cgi-bin/a/b/demo_02",
+        "name": "query_money",
+        "route": "/cgi/qq_sport/inner/weishi/query_money",
         "routeExtra": {},
-        "description": "description for demo_02",
+        "description": "查询红包余额",
         "disable": false,
-        "defaultModule": "success_1",
-        "activeModule": "success_3_renamed",
-        "method": "get",
-        "priority": 0,
-        "tags": [
-          "全部"
-        ]
-      },
-      "createdAt": 1529411492401
-    },
-    {
-      "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_server/mockers/demo_03",
-      "name": "demo_03",
-      "mockModuleList": [
-        {
-          "name": "error_1",
-          "config": {
-            "name": "error_1",
-            "description": "description_error_1",
-            "priority": 0,
-            "delay": 0,
-            "query": {
-              "_m_target": "error_1"
-            }
-          }
-        },
-        {
-          "name": "success_1",
-          "config": {
-            "name": "success_1",
-            "description": "description_success_1",
-            "priority": 0,
-            "delay": 0,
-            "query": {
-              "_m_target": "success_1"
-            }
-          }
-        },
-        {
-          "name": "success_2",
-          "config": {
-            "name": "success_2",
-            "description": "description_success_2",
-            "priority": 100,
-            "delay": 0,
-            "query": {
-              "_m_target": "success_2"
-            }
-          }
-        }
-      ],
-      "config": {
-        "name": "demo_03",
-        "route": "/cgi-bin/a/b/demo_03",
-        "routeExtra": {},
-        "description": "description for demo_03",
-        "disable": false,
-        "defaultModule": "success_1",
-        "activeModule": "error_1",
+        "defaultModule": "success_16888",
+        "activeModule": "success_16888",
         "method": "get",
         "priority": 0,
         "tags": [
           "全部",
-          "tag1",
-          "tag2"
+          "linjianghe",
+          "余额页",
+          "常规红包"
+        ]
+      }
+    },
+    {
+      "basePath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers/query_water",
+      "name": "query_water",
+      "mockModuleList": [
+        {
+          "name": "error_not_login",
+          "config": {
+            "name": "error_not_login",
+            "description": "错误：未登录",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_not_login"
+            }
+          }
+        },
+        {
+          "name": "success_basic",
+          "config": {
+            "name": "success_basic",
+            "description": "成功",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success_basic"
+            }
+          }
+        },
+        {
+          "name": "success_empty",
+          "config": {
+            "name": "success_empty",
+            "description": "成功，没有流水记录",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success_empty"
+            }
+          }
+        }
+      ],
+      "config": {
+        "name": "query_water",
+        "route": "/cgi/qq_sport/inner/weishi/query_water",
+        "routeExtra": {},
+        "description": "获取交易流水记录",
+        "disable": false,
+        "defaultModule": "success_basic",
+        "activeModule": "success_basic",
+        "method": "get",
+        "priority": 0,
+        "tags": [
+          "全部",
+          "linjianghe",
+          "交易明细页",
+          "常规红包"
+        ]
+      }
+    },
+    {
+      "basePath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers/trans",
+      "name": "trans",
+      "mockModuleList": [
+        {
+          "name": "error_10000_not_veryfied",
+          "config": {
+            "name": "error_10000_not_veryfied",
+            "description": "未通过实名认证",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_10000_not_veryfied"
+            }
+          }
+        },
+        {
+          "name": "error_10001_inner_error",
+          "config": {
+            "name": "error_10001_inner_error",
+            "description": "内部调用服务时出错，内部错误（查询失败，需提示提交中...）",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_10001_inner_error"
+            }
+          }
+        },
+        {
+          "name": "error_11000_not_login",
+          "config": {
+            "name": "error_11000_not_login",
+            "description": "cookie is error",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_11000_not_login"
+            }
+          }
+        },
+        {
+          "name": "error_12000_withdraw_timeout",
+          "config": {
+            "name": "error_12000_withdraw_timeout",
+            "description": "调用米大师接口可能超时了",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_12000_withdraw_timeout"
+            }
+          }
+        },
+        {
+          "name": "error_22_trans_user_limit",
+          "config": {
+            "name": "error_22_trans_user_limit",
+            "description": "每人每天只能提现一次",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_22_trans_user_limit"
+            }
+          }
+        },
+        {
+          "name": "error_23_trans_total_limit",
+          "config": {
+            "name": "error_23_trans_total_limit",
+            "description": "今天总提现次数用完",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_23_trans_total_limit"
+            }
+          }
+        },
+        {
+          "name": "error_6",
+          "config": {
+            "name": "error_6",
+            "description": "添加包裹返回失败",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_6"
+            }
+          }
+        },
+        {
+          "name": "success",
+          "config": {
+            "name": "success",
+            "description": "成功",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success"
+            }
+          }
+        }
+      ],
+      "config": {
+        "name": "trans",
+        "route": "/cgi/qq_sport/inner/weishi/trans",
+        "routeExtra": {},
+        "description": "提现",
+        "disable": false,
+        "defaultModule": "success",
+        "activeModule": "success",
+        "method": "get",
+        "priority": 0,
+        "tags": [
+          "全部",
+          "linjianghe",
+          "提现页",
+          "常规红包"
+        ]
+      }
+    },
+    {
+      "basePath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers/weishi_query_balance",
+      "name": "weishi_query_balance",
+      "mockModuleList": [
+        {
+          "name": "error_24_not_whitelist",
+          "config": {
+            "name": "error_24_not_whitelist",
+            "description": "不在号码包内",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_24_not_whitelist"
+            }
+          }
+        },
+        {
+          "name": "error_25_overtime",
+          "config": {
+            "name": "error_25_overtime",
+            "description": "已过期",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_25_overtime"
+            }
+          }
+        },
+        {
+          "name": "error_6",
+          "config": {
+            "name": "error_6",
+            "description": "添加包裹返回失败",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_6"
+            }
+          }
+        },
+        {
+          "name": "error_not_login",
+          "config": {
+            "name": "error_not_login",
+            "description": "cookie is error",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_not_login"
+            }
+          }
+        },
+        {
+          "name": "success_0",
+          "config": {
+            "name": "success_0",
+            "description": "领取了0元",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success_0"
+            }
+          }
+        },
+        {
+          "name": "success_388",
+          "config": {
+            "name": "success_388",
+            "description": "领取了3.88元",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success_388"
+            }
+          }
+        },
+        {
+          "name": "success_500",
+          "config": {
+            "name": "success_500",
+            "description": "领取了5.00元",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success_500"
+            }
+          }
+        }
+      ],
+      "config": {
+        "name": "weishi_query_balance",
+        "route": "/cgi/qq_sport/inner/weishi_query_balance",
+        "routeExtra": {},
+        "description": "领取红包",
+        "disable": false,
+        "defaultModule": "success_500",
+        "activeModule": "success_500",
+        "method": "get",
+        "priority": 0,
+        "tags": [
+          "全部",
+          "linjianghe",
+          "余额页"
+        ]
+      }
+    },
+    {
+      "basePath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers/weishi_red_packet",
+      "name": "weishi_red_packet",
+      "mockModuleList": [
+        {
+          "name": "error_11000_not_login",
+          "config": {
+            "name": "error_11000_not_login",
+            "description": "错误：未登录",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_11000_not_login"
+            }
+          }
+        },
+        {
+          "name": "error_24_not_whitelist",
+          "config": {
+            "name": "error_24_not_whitelist",
+            "description": "不在号码包内",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_24_not_whitelist"
+            }
+          }
+        },
+        {
+          "name": "error_25_overtime",
+          "config": {
+            "name": "error_25_overtime",
+            "description": "已过期",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_25_overtime"
+            }
+          }
+        },
+        {
+          "name": "error_6",
+          "config": {
+            "name": "error_6",
+            "description": "添加包裹返回失败",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_6"
+            }
+          }
+        },
+        {
+          "name": "success_388",
+          "config": {
+            "name": "success_388",
+            "description": "领取了3.88元",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success_388"
+            }
+          }
+        },
+        {
+          "name": "success_388_retry",
+          "config": {
+            "name": "success_388_retry",
+            "description": "已领取了3.88元，又来领取",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success_388_retry"
+            }
+          }
+        },
+        {
+          "name": "success_500",
+          "config": {
+            "name": "success_500",
+            "description": "领取了5.00元",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success_500"
+            }
+          }
+        }
+      ],
+      "config": {
+        "name": "weishi_red_packet",
+        "route": "/cgi/qq_sport/inner/weishi_red_packet",
+        "routeExtra": {},
+        "description": "领取红包",
+        "disable": false,
+        "defaultModule": "success_500",
+        "activeModule": "success_500",
+        "method": "get",
+        "priority": 0,
+        "tags": [
+          "全部",
+          "linjianghe",
+          "H5引导页"
         ]
       },
-      "createdAt": 1529410528186
+      "createdAt": 1529413780338
+    },
+    {
+      "basePath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers/weishi_withdraw",
+      "name": "weishi_withdraw",
+      "mockModuleList": [
+        {
+          "name": "error_10000_not_veryfied",
+          "config": {
+            "name": "error_10000_not_veryfied",
+            "description": "未通过实名认证",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_10000_not_veryfied"
+            }
+          }
+        },
+        {
+          "name": "error_10001_inner_error",
+          "config": {
+            "name": "error_10001_inner_error",
+            "description": "内部调用服务时出错，内部错误",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_10001_inner_error"
+            }
+          }
+        },
+        {
+          "name": "error_11000_not_login",
+          "config": {
+            "name": "error_11000_not_login",
+            "description": "cookie is error",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_11000_not_login"
+            }
+          }
+        },
+        {
+          "name": "error_12000_withdraw_timeout",
+          "config": {
+            "name": "error_12000_withdraw_timeout",
+            "description": "调用米大师接口可能超时了",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_12000_withdraw_timeout"
+            }
+          }
+        },
+        {
+          "name": "error_22",
+          "config": {
+            "name": "error_22",
+            "description": "每人每天只能提现一次",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_22"
+            }
+          }
+        },
+        {
+          "name": "error_6",
+          "config": {
+            "name": "error_6",
+            "description": "添加包裹返回失败",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "error_6"
+            }
+          }
+        },
+        {
+          "name": "success",
+          "config": {
+            "name": "success",
+            "description": "提现成功",
+            "priority": 0,
+            "delay": 0,
+            "query": {
+              "_m_target": "success"
+            }
+          }
+        }
+      ],
+      "config": {
+        "name": "weishi_withdraw",
+        "route": "/cgi/qq_sport/inner/weishi_withdraw",
+        "routeExtra": {},
+        "description": "领取红包",
+        "disable": false,
+        "defaultModule": "success",
+        "activeModule": "success",
+        "method": "get",
+        "priority": 0,
+        "tags": [
+          "全部",
+          "linjianghe",
+          "余额页"
+        ]
+      }
     }
   ]
 }

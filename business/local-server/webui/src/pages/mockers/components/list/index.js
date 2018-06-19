@@ -56,12 +56,35 @@ class MockersList extends Component {
     this.props.setMockerDisable(mockerName, !curIsDisabled);
   };
 
+  getResultToRenderList(filterList) {
+    let length = filterList.length;
+    let groupChildLength = 3;
+    let groupLength = (length % groupChildLength !== 0) ? parseInt(length / groupChildLength) + 1 : parseInt(length / groupChildLength);
+
+    let result = [];
+
+    for (let i = 0; i < groupLength; i++) {
+      let arr = [];
+
+      for (let j = i * groupChildLength; (j < (i + 1) * groupChildLength) && (j < length); j++) {
+        console.log('=====', i, j, filterList[j].name);
+        arr.push(filterList[j]);
+      }
+
+      result.push(arr);
+    }
+
+    return result;
+  }
+
   render() {
     const { match } = this.props;
     const { curTag } = this.state;
 
     const tagList = this.getAllTags();
     const filterList = this.getFilterList();
+
+    const list = this.getResultToRenderList(filterList);
 
     return (
       <div className="mockers">
@@ -78,25 +101,32 @@ class MockersList extends Component {
             }
           </Button.Group>
         </div>
+
         <div className="list-wrapper">
-          <Row gutter={16}>
-            {
-              filterList.map((item, index) => {
-                return (
-                  <Col span={8} key={index}>
-                    <ListItem index={index}
-                              curTag={curTag}
-                              mockerItem={item}
-                              mockersPath={match.url}
-                              clickTag={this.handleClickTag}
-                              setActive={this.handleActive}
-                              setDisable={this.handleDisable}
-                    />
-                  </Col>
-                );
-              })
-            }
-          </Row>
+          {
+            list.map((subList, subListIndex) => {
+              return (
+                <Row gutter={16} key={subListIndex}>
+                  {
+                    subList.map((item, index) => {
+                      return (
+                        <Col span={8} key={index}>
+                          <ListItem index={subListIndex * 3 + index}
+                                    curTag={curTag}
+                                    mockerItem={item}
+                                    mockersPath={match.url}
+                                    clickTag={this.handleClickTag}
+                                    setActive={this.handleActive}
+                                    setDisable={this.handleDisable}
+                          />
+                        </Col>
+                      );
+                    })
+                  }
+                </Row>
+              );
+            })
+          }
         </div>
       </div>
     );
