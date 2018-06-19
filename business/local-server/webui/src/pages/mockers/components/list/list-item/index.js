@@ -10,9 +10,10 @@ export default function MockerListItem(props) {
   const mockerItemConfig = mockerItem.config;
 
   return (
-    <Row>
-      <Col span={24}>
-        <Card title={`${index + 1}. ${mockerItem.name}`}>
+
+    <Card title={`${index + 1}. ${mockerItem.name}`}>
+      <Row>
+        <Col span={12}>
           <Button.Group>
             {
               mockerItemConfig.tags.map((tagName, tagIndex) => {
@@ -35,14 +36,24 @@ export default function MockerListItem(props) {
             <p>{mockerItemConfig.description}</p>
           </div>
 
+
           <NavLink to={`${mockersPath}/${mockerItem.name}`}>
             <Button type="primary"
                     size="large"
                     icon="tool">更多...</Button>
           </NavLink>
-        </Card>
-      </Col>
-    </Row>
+        </Col>
+
+        <Col span={12}>
+          {
+            mockerItem.mockModuleList.map((item, index) => {
+              return <Button key={index}>{item.name}</Button>;
+            })
+          }
+        </Col>
+
+      </Row>
+    </Card>
   );
 }
 
