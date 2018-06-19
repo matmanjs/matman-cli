@@ -75,6 +75,7 @@ class MockersList extends Component {
               return (
                 <ListItem key={index}
                           index={index}
+                          curTag={curTag}
                           mockerItem={item}
                           mockersPath={match.url}
                           clickTag={this.handleClickTag}
