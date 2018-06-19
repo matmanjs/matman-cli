@@ -12,9 +12,15 @@ export default function MockerListItem(props) {
   const isDisabled = mockerItemConfig.disable;
 
   return (
-
     <Card title={`${index + 1}. ${mockerItem.name}`} extra={
-      <div>
+      <div className="card-action">
+        <Button type={isDisabled ? 'primary' : 'default'}
+                icon="setting"
+                className="set-disable-btn"
+                onClick={setDisable.bind(this, mockerItem.name, isDisabled)}
+        >
+          {isDisabled ? '启用' : '禁用'}
+        </Button>
 
         <NavLink to={`${mockersPath}/${mockerItem.name}`}>
           更多...
@@ -24,14 +30,6 @@ export default function MockerListItem(props) {
       <div className="detail">
         <p>{mockerItemConfig.description}</p>
       </div>
-
-      <Button type={isDisabled ? 'primary' : 'default'} icon="setting"
-              onClick={setDisable.bind(this, mockerItem.name, isDisabled)}>
-        {isDisabled ? '启用' : '禁用'} mock 服务
-      </Button>
-
-      <br />
-      <br />
 
       <p>点击标签进行过滤：</p>
 
@@ -62,6 +60,7 @@ export default function MockerListItem(props) {
           mockerItem.mockModuleList.map((item, index) => {
             return (
               <Button key={index}
+                      disabled={isDisabled ? 'disable' : ''}
                       className={item.name === mockerItemConfig.activeModule ? 'active' : ''}
                       icon={item.name === mockerItemConfig.activeModule ? 'check' : ''}
                       onClick={setActive.bind(this, mockerItem.name, item.name)}
