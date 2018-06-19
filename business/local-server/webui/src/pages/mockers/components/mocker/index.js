@@ -93,6 +93,12 @@ class Mocker extends Component {
     this.props.setMockerDisable(this.props.mockerItem.name, !this.props.mockerItem.config.disable);
   };
 
+  handleRefresh = (mockerName) => {
+    // 加载这个 mocker 的信息
+    this.props.loadMocker(mockerName);
+    this.props.loadMockerReadme(mockerName);
+  };
+
   render() {
     const { isLoaded, mockerItem, readme, match, mockerListInfo } = this.props;
     const { modalShowData } = this.state;
@@ -100,7 +106,7 @@ class Mocker extends Component {
     return (
       <Layout className="mockers-mocker">
         <Layout.Sider className="mocker-sider">
-          <MockerMenu mockerListInfo={mockerListInfo} match={match} />
+          <MockerMenu mockerListInfo={mockerListInfo} match={match} refresh={this.handleRefresh} />
         </Layout.Sider>
 
         <Layout className="mocker-content">
