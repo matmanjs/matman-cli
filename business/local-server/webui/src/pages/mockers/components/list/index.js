@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { Button } from 'antd';
+import { Button, Col, Row } from 'antd';
 
 import { loadMockerList } from '../../data/data-mocker-list';
 import ListItem from './list-item';
@@ -70,19 +70,22 @@ class MockersList extends Component {
           </Button.Group>
         </div>
         <div className="list-wrapper">
-          {
-            filterList.map((item, index) => {
-              return (
-                <ListItem key={index}
-                          index={index}
-                          curTag={curTag}
-                          mockerItem={item}
-                          mockersPath={match.url}
-                          clickTag={this.handleClickTag}
-                />
-              );
-            })
-          }
+          <Row gutter={16}>
+            {
+              filterList.map((item, index) => {
+                return (
+                  <Col span={8} key={index}>
+                    <ListItem index={index}
+                              curTag={curTag}
+                              mockerItem={item}
+                              mockersPath={match.url}
+                              clickTag={this.handleClickTag}
+                    />
+                  </Col>
+                );
+              })
+            }
+          </Row>
         </div>
       </div>
     );
