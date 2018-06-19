@@ -19,6 +19,8 @@ export default function MockerListItem(props) {
         <p>{mockerItemConfig.description}</p>
       </div>
 
+      <p>点击标签进行过滤：</p>
+
       <Button.Group>
         {
           mockerItemConfig.tags.map((tagName, tagIndex) => {
@@ -39,7 +41,7 @@ export default function MockerListItem(props) {
 
       <br />
       <br />
-
+      <p>请选择需要激活的模块：</p>
       <Button.Group>
         {
           mockerItem.mockModuleList.map((item, index) => {
