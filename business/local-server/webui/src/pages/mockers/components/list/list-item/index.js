@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Card } from 'antd';
+import { Alert,Button, Card } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import './index.less';
@@ -12,7 +12,7 @@ export default function MockerListItem(props) {
   const isDisabled = mockerItemConfig.disable;
 
   return (
-    <Card title={`${index + 1}. ${mockerItem.name}`} extra={
+    <Card className="mocker-list-item" title={`${index + 1}. ${mockerItem.name}`} extra={
       <div className="card-action">
         <Button type={isDisabled ? 'primary' : 'default'}
                 icon="setting"
@@ -28,7 +28,11 @@ export default function MockerListItem(props) {
       </div>
     }>
       <div className="detail">
-        <p>{mockerItemConfig.description}</p>
+        <Alert
+          message={mockerItemConfig.description}
+          type="info"
+          showIcon
+        />
       </div>
 
       <p>点击标签进行过滤：</p>
