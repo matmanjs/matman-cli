@@ -1,3 +1,4 @@
+const path = require('path');
 const _ = require('lodash');
 const baseRouter = require('../../server/router/base-router');
 const matman = require('../../../../business/matman');
@@ -11,7 +12,7 @@ const HANDLER_NAME_FIELD = 'mockerName';
 
 module.exports = (router, entry) => {
   const mockerParser = new MockerParser({
-    basePath: entry.mockServerPath,
+    basePath: entry.mockServerPath || path.resolve(entry.basePath, './mock_server/mockers'),
     buildPath: entry.buildPath
   });
 
