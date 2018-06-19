@@ -1,9 +1,9 @@
 {
-  "mockServerPath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_service/mockers",
+  "mockServerPath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_server/mockers",
   "dataPath": "/Users/helinjiang/gitprojects/matman-cli/test/data/demo_03/app",
   "data": [
     {
-      "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_service/mockers/demo_01",
+      "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_server/mockers/demo_01",
       "name": "demo_01",
       "mockModuleList": [
         {
@@ -53,11 +53,10 @@
         "tags": [
           "全部"
         ]
-      },
-      "createdAt": 1528910021937
+      }
     },
     {
-      "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_service/mockers/demo_02",
+      "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_server/mockers/demo_02",
       "name": "demo_02_renamed",
       "mockModuleList": [
         {
@@ -147,7 +146,7 @@
       }
     },
     {
-      "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_service/mockers/demo_03",
+      "basePath": "/Users/helinjiang/gitprojects/matman/test/data/fixtures/mock_server/mockers/demo_03",
       "name": "demo_03",
       "mockModuleList": [
         {
@@ -198,7 +197,9 @@
         "method": "get",
         "priority": 0,
         "tags": [
-          "全部"
+          "全部",
+          "tag1",
+          "tag2"
         ]
       }
     }
