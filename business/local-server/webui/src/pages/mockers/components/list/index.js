@@ -52,8 +52,8 @@ class MockersList extends Component {
     this.props.setMockerActiveModule(mockerName, mockModuleName);
   };
 
-  handleDisable = () => {
-    // this.props.setMockerDisable(this.props.mockerItem.name, !this.props.mockerItem.config.disable);
+  handleDisable = (mockerName, curIsDisabled) => {
+    this.props.setMockerDisable(mockerName, !curIsDisabled);
   };
 
   render() {
