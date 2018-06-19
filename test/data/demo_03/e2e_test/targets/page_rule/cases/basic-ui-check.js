@@ -1,10 +1,10 @@
 const env = require('./env/index');
 const scanPage = require('../../../lib/handle-master/scan-page');
+const getPreloadScriptPath = require('../../../lib/client-script/get-preload-script-path');
 
 function getResult(opts, useRecorder) {
   // 如何校验，前端页面执行脚本
-  let preloadClientScriptPath = getPreloadClientScriptPath('page_rule/crawlers/get-page-info');
-  console.log('==preloadClientScriptPath==', preloadClientScriptPath);
+  let preloadClientScriptPath = getPreloadScriptPath('page_rule/crawlers/get-page-info');
 
   opts = Object.assign({
     proxyServer: env.OPTS.PROXY_SERVER_DEV,
@@ -12,13 +12,6 @@ function getResult(opts, useRecorder) {
   }, opts);
 
   return scanPage(env.getPageUrl(true), preloadClientScriptPath, opts, { useRecorder: useRecorder });
-}
-
-function getPreloadClientScriptPath(name) {
-  const webpackConfig = require('../../../../dist-client-script/webpack-config');
-  const path = require('path');
-
-  return path.join(webpackConfig.output.path, webpackConfig.output.filename.replace('[name]', name));
 }
 
 module.exports = getResult;
