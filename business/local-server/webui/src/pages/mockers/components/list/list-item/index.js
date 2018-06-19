@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Card, Col, Row } from 'antd';
+import { Button, Card } from 'antd';
 import { NavLink } from 'react-router-dom';
 
 import './index.less';
@@ -11,48 +11,43 @@ export default function MockerListItem(props) {
 
   return (
 
-    <Card title={`${index + 1}. ${mockerItem.name}`}>
-      <Row>
-        <Col span={12}>
-          <Button.Group>
-            {
-              mockerItemConfig.tags.map((tagName, tagIndex) => {
-                return (
-                  <Button
-                    key={tagIndex}
-                    className={tagName === curTag ? 'active' : ''}
-                    icon="tag"
-                    onClick={clickTag.bind(this, tagName)}>
+    <Card title={`${index + 1}. ${mockerItem.name}`} extra={<NavLink to={`${mockersPath}/${mockerItem.name}`}>
+      更多...
+    </NavLink>}>
 
-                    {tagName}
+      <div className="detail">
+        <p>{mockerItemConfig.description}</p>
+      </div>
 
-                  </Button>
-                );
-              })
-            }
-          </Button.Group>
+      <Button.Group>
+        {
+          mockerItemConfig.tags.map((tagName, tagIndex) => {
+            return (
+              <Button
+                key={tagIndex}
+                className={tagName === curTag ? 'active' : ''}
+                icon="tag"
+                onClick={clickTag.bind(this, tagName)}>
 
-          <div className="detail">
-            <p>{mockerItemConfig.description}</p>
-          </div>
+                {tagName}
 
+              </Button>
+            );
+          })
+        }
+      </Button.Group>
 
-          <NavLink to={`${mockersPath}/${mockerItem.name}`}>
-            <Button type="primary"
-                    size="large"
-                    icon="tool">更多...</Button>
-          </NavLink>
-        </Col>
+      <br />
+      <br />
 
-        <Col span={12}>
-          {
-            mockerItem.mockModuleList.map((item, index) => {
-              return <Button key={index}>{item.name}</Button>;
-            })
-          }
-        </Col>
+      <Button.Group>
+        {
+          mockerItem.mockModuleList.map((item, index) => {
+            return <Button key={index}>{item.name}</Button>;
+          })
+        }
+      </Button.Group>
 
-      </Row>
     </Card>
   );
 }
