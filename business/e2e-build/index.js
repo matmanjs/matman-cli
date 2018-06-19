@@ -1,15 +1,15 @@
 const matman = require('../matman');
 
-function getEntry(basePath, buildPath, regMatch) {
+function getClientScriptHandler(basePath, buildPath, regMatch) {
   const clientScript = new matman.ClientScript({
     basePath: basePath,
     buildPath: buildPath,
     regMatch: regMatch
   });
 
-  return clientScript.entry;
+  return clientScript;
 }
 
 module.exports = {
-  getEntry: getEntry
+  getClientScriptHandler: getClientScriptHandler
 };
