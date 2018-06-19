@@ -43,7 +43,14 @@ export default function MockerListItem(props) {
       <Button.Group>
         {
           mockerItem.mockModuleList.map((item, index) => {
-            return <Button key={index}>{item.name}</Button>;
+            return (
+              <Button key={index}
+                      className={item.name === mockerItemConfig.activeModule ? 'active' : ''}
+                      icon={item.name === mockerItemConfig.activeModule ? 'check' : ''}
+              >
+                {item.name}
+              </Button>
+            );
           })
         }
       </Button.Group>
