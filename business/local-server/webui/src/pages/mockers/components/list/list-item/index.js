@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import './index.less';
 
 export default function MockerListItem(props) {
-  const { mockerItem, mockersPath, curTag, index, clickTag } = props;
+  const { mockerItem, mockersPath, curTag, index, clickTag, setActive, setDisable } = props;
   const mockerItemConfig = mockerItem.config;
 
   return (
@@ -47,6 +47,7 @@ export default function MockerListItem(props) {
               <Button key={index}
                       className={item.name === mockerItemConfig.activeModule ? 'active' : ''}
                       icon={item.name === mockerItemConfig.activeModule ? 'check' : ''}
+                      onClick={setActive.bind(this, mockerItem.name, item.name)}
               >
                 {item.name}
               </Button>

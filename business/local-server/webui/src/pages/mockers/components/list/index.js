@@ -8,6 +8,7 @@ import { loadMockerList } from '../../data/data-mocker-list';
 import ListItem from './list-item';
 
 import './index.less';
+import { setMockerActiveModule, setMockerDisable } from '../../data/data-mocker';
 
 class MockersList extends Component {
   constructor(props, context) {
@@ -47,6 +48,14 @@ class MockersList extends Component {
     });
   };
 
+  handleActive = (mockerName, mockModuleName) => {
+    this.props.setMockerActiveModule(mockerName, mockModuleName);
+  };
+
+  handleDisable = () => {
+    // this.props.setMockerDisable(this.props.mockerItem.name, !this.props.mockerItem.config.disable);
+  };
+
   render() {
     const { match } = this.props;
     const { curTag } = this.state;
@@ -80,6 +89,8 @@ class MockersList extends Component {
                               mockerItem={item}
                               mockersPath={match.url}
                               clickTag={this.handleClickTag}
+                              setActive={this.handleActive}
+                              setDisable={this.handleDisable}
                     />
                   </Col>
                 );
@@ -105,8 +116,15 @@ function mapDispatchToProps(dispatch) {
   return {
     loadMockerList() {
       return dispatch(loadMockerList());
-    }
+    },
 
+    setMockerActiveModule(mockerName, mockModuleName) {
+      return dispatch(setMockerActiveModule(mockerName, mockModuleName));
+    },
+
+    setMockerDisable(mockerName, value) {
+      return dispatch(setMockerDisable(mockerName, value));
+    }
   };
 }
 
