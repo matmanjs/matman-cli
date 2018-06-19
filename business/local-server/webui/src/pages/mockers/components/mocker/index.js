@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { Layout } from 'antd';
+
 import { ajax } from '../../../../business/db';
 
 import { loadMocker, loadMockerReadme, setMockerActiveModule, setMockerDisable } from '../../data/data-mocker';
@@ -11,6 +13,7 @@ import MockerShowResult from './display-show-result';
 import MockerSwitcher from './display-action';
 import MockModuleList from './display-mock-module-list';
 import MockerReadme from './display-readme';
+import MockerMenu from './display-menu';
 
 import './index.less';
 
@@ -91,44 +94,49 @@ class Mocker extends Component {
     const { modalShowData } = this.state;
 
     return (
-      <div className="mockers-mocker">
+      <Layout className="mockers-mocker">
+        <Layout.Sider className="mocker-sider">
+          <MockerMenu/>
+        </Layout.Sider>
 
-        <MockerBreadcrumb name={mockerItem.name} match={match} />
+        <Layout className="mocker-content">
+          <MockerBreadcrumb name={mockerItem.name} match={match} />
 
-        {
-          isLoaded ? (
-            <div>
-              <MockerSwitcher
-                isDisabled={mockerItem.config.disable}
-                activeModule={mockerItem.config.activeModule}
-                previewResult={this.handlePreviewResult.bind(this, null)}
-                updateDisable={this.handleDisable}
-              />
+          {
+            isLoaded ? (
+              <div>
+                <MockerSwitcher
+                  isDisabled={mockerItem.config.disable}
+                  activeModule={mockerItem.config.activeModule}
+                  previewResult={this.handlePreviewResult.bind(this, null)}
+                  updateDisable={this.handleDisable}
+                />
 
-              <MockerDetail
-                mockerItem={mockerItem}
-              />
+                <MockerDetail
+                  mockerItem={mockerItem}
+                />
 
-              <MockModuleList
-                isLoaded={isLoaded}
-                mockerItem={mockerItem}
-                previewResult={this.handlePreviewResult}
-                updateActive={this.handleActive}
-              />
+                <MockModuleList
+                  isLoaded={isLoaded}
+                  mockerItem={mockerItem}
+                  previewResult={this.handlePreviewResult}
+                  updateActive={this.handleActive}
+                />
 
-              <MockerShowResult
-                data={modalShowData}
-                onHide={this.handleModalHide}
-              />
+                <MockerShowResult
+                  data={modalShowData}
+                  onHide={this.handleModalHide}
+                />
 
-              <MockerReadme htmlContent={readme} />
+                <MockerReadme htmlContent={readme} />
 
-            </div>
-          ) : (
-            <div>加载中...</div>
-          )
-        }
-      </div>
+              </div>
+            ) : (
+              <div>加载中...</div>
+            )
+          }
+        </Layout>
+      </Layout>
     );
   }
 }
