@@ -6,6 +6,7 @@ import { Layout } from 'antd';
 import { ajax } from '../../../../business/db';
 
 import { loadMocker, loadMockerReadme, setMockerActiveModule, setMockerDisable } from '../../data/data-mocker';
+import { loadMockerList } from '../../data/data-mocker-list';
 
 import MockerBreadcrumb from './display-breadcrumb';
 import MockerDetail from './display-detail';
@@ -34,6 +35,9 @@ class Mocker extends Component {
     // 加载这个 mocker 的信息
     this.props.loadMocker(mockerName);
     this.props.loadMockerReadme(mockerName);
+
+    // 加载所有的 mocker，主要是为了菜单展示
+    this.props.loadMockerList();
   }
 
   handlePreviewResult = (query) => {
@@ -90,13 +94,13 @@ class Mocker extends Component {
   };
 
   render() {
-    const { isLoaded, mockerItem, readme, match } = this.props;
+    const { isLoaded, mockerItem, readme, match, mockerListInfo } = this.props;
     const { modalShowData } = this.state;
 
     return (
       <Layout className="mockers-mocker">
         <Layout.Sider className="mocker-sider">
-          <MockerMenu/>
+          <MockerMenu mockerListInfo={mockerListInfo} match={match} />
         </Layout.Sider>
 
         <Layout className="mocker-content">
@@ -142,17 +146,22 @@ class Mocker extends Component {
 }
 
 function mapStateToProps(state) {
-  const { mockerInfo } = state;
+  const { mockerInfo, mockerListInfo } = state;
 
   return {
     isLoaded: mockerInfo.isLoaded,
     mockerItem: mockerInfo.data,
-    readme: mockerInfo.readme
+    readme: mockerInfo.readme,
+    mockerListInfo: mockerListInfo
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    loadMockerList() {
+      return dispatch(loadMockerList());
+    },
+
     loadMocker(mockerName) {
       return dispatch(loadMocker(mockerName));
     },

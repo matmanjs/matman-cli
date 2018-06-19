@@ -1,15 +1,24 @@
 import React from 'react';
-import { Icon, Menu } from 'antd';
+import { Menu } from 'antd';
 
 import './index.less';
 
-export default function MockerReadme(props) {
+export default function MockerMenu(props) {
+  let { mockerListInfo, match } = props;
+  if (!mockerListInfo.isLoaded) {
+    return null;
+  }
+
+  let { mockerName } = match.params;
 
   return (
     <div className="mocker-menu">
-      <Menu defaultSelectedKeys={['1']}>
-        <Menu.Item key="1">Option 1</Menu.Item>
-        <Menu.Item key="2">Option 2</Menu.Item>
+      <Menu defaultSelectedKeys={[mockerName]} selectedKeys={[mockerName]}>
+        {
+          mockerListInfo.list.map((item) => {
+            return <Menu.Item key={item.name}>{item.name}</Menu.Item>;
+          })
+        }
       </Menu>
     </div>
   );
