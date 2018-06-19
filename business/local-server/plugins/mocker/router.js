@@ -12,7 +12,7 @@ const HANDLER_NAME_FIELD = 'mockerName';
 module.exports = (router, entry) => {
   const mockerParser = new MockerParser({
     basePath: entry.mockServerPath,
-    dataPath: entry.dataPath
+    buildPath: entry.buildPath
   });
 
   let mockerList = mockerParser.getAllMocker();

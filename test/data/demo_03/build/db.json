@@ -1,6 +1,6 @@
 {
   "mockServerPath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers",
-  "dataPath": "/Users/helinjiang/gitprojects/matman-cli/test/data/demo_03/app",
+  "buildPath": "/Users/helinjiang/gitprojects/matman-cli/test/data/demo_03/build",
   "data": [
     {
       "basePath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers/check_pay_status",
@@ -545,8 +545,7 @@
           "linjianghe",
           "H5引导页"
         ]
-      },
-      "createdAt": 1529413780338
+      }
     },
     {
       "basePath": "/Users/helinjiang/gitprojects/now-h5-weishi-redpacket/matman-app/src/mock_server/mockers/weishi_withdraw",
