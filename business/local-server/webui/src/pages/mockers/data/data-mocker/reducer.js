@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
 import {
-  MOCKER_REQUEST,
-  MOCKER_REQUEST_SUCCESS,
-  MOCKER_REQUEST_FAIL,
   MOCKER_README_REQUEST_SUCCESS,
-  SET_ACTIVE_MODULE_REQUEST_SUCCESS,
+  MOCKER_REQUEST,
+  MOCKER_REQUEST_FAIL,
+  MOCKER_REQUEST_SUCCESS,
+  SET_ACTIVE_MODULE_REQUEST_SUCCESS
 } from './action';
 
 const initialState = {
@@ -29,7 +29,7 @@ function mockerInfo(state = initialState, action) {
         isLoaded: true,
         data: _.merge({}, data, {
           modules: (data.modules || []).sort((a, b) => {
-            return b.priority - a.priority
+            return b.priority - a.priority;
           })
         })
       };
@@ -48,6 +48,9 @@ function mockerInfo(state = initialState, action) {
 
     case SET_ACTIVE_MODULE_REQUEST_SUCCESS:
       update.data = _.merge({}, state.data, data);
+      break;
+
+    default:
       break;
   }
 

@@ -59,7 +59,7 @@ class MockersList extends Component {
   getResultToRenderList(filterList) {
     let length = filterList.length;
     let groupChildLength = 3;
-    let groupLength = (length % groupChildLength !== 0) ? parseInt(length / groupChildLength) + 1 : parseInt(length / groupChildLength);
+    let groupLength = (length % groupChildLength !== 0) ? parseInt(length / groupChildLength, 10) + 1 : parseInt(length / groupChildLength, 10);
 
     let result = [];
 
@@ -67,7 +67,7 @@ class MockersList extends Component {
       let arr = [];
 
       for (let j = i * groupChildLength; (j < (i + 1) * groupChildLength) && (j < length); j++) {
-        console.log('=====', i, j, filterList[j].name);
+        // console.log('=====', i, j, filterList[j].name);
         arr.push(filterList[j]);
       }
 

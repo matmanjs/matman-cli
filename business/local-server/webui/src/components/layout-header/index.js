@@ -19,7 +19,7 @@ class LayoutHeader extends Component {
         if (!curMenu) {
             return;
         }
-        console.log('---handleIsActive---', curMenu);
+        // console.log('---handleIsActive---', curMenu);
 
         const map = {
             '/': 'home',
