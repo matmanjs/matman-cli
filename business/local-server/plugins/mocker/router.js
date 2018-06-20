@@ -13,8 +13,8 @@ const HANDLER_NAME_FIELD = 'mockerName';
 module.exports = (router, entry) => {
   // 创建 MockerParser 对象
   const mockerParser = new MockerParser({
-    basePath: matman.mockerUtil.getMockServerBasePath(entry.basePath, entry.mockServerPath),
-    buildPath: matman.mockerUtil.getMockServerBuildPath(entry.basePath, entry.buildPath)
+    basePath: matman.mockerUtil.getMockServerBasePath(entry.rootPath, entry.mockServerPath),
+    buildPath: matman.mockerUtil.getMockServerBuildPath(entry.rootPath, entry.buildPath)
   });
 
   // 获取所有的 mocker 列表
