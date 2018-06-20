@@ -11,22 +11,10 @@ const PLUGIN_NAME = 'mocker';
 const HANDLER_NAME_FIELD = 'mockerName';
 
 module.exports = (router, entry) => {
-  // 获得 basePath
-  let mockerParserBasePath = entry.mockServerPath || './mock_server/mockers';
-  if (!path.isAbsolute(mockerParserBasePath)) {
-    mockerParserBasePath = path.resolve(entry.basePath, mockerParserBasePath);
-  }
-
-  // 获得 buildPath
-  let mockerParserBuildPath = entry.buildPath || './build';
-  if (!path.isAbsolute(mockerParserBuildPath)) {
-    mockerParserBuildPath = path.resolve(entry.basePath, mockerParserBuildPath);
-  }
-
   // 创建 MockerParser 对象
   const mockerParser = new MockerParser({
-    basePath: mockerParserBasePath,
-    buildPath: mockerParserBuildPath
+    basePath: matman.mockerUtil.getMockServerBasePath(entry.basePath, entry.mockServerPath),
+    buildPath: matman.mockerUtil.getMockServerBuildPath(entry.basePath, entry.buildPath)
   });
 
   // 获取所有的 mocker 列表
