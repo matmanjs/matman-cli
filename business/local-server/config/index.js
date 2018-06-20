@@ -4,7 +4,7 @@ const path = require('path');
 /**
  * 获取最终的配置数据
  * @param {Object | String} opts 用户传递过来的参数
- * @param {String} [opts.basePath] 项目根目录
+ * @param {String} [opts.rootPath] 项目根目录
  * @returns {Object}
  */
 function getConfigOpts(opts) {
@@ -29,9 +29,9 @@ function getConfigOpts(opts) {
     return null;
   }
 
-  // 如果没有 basePath，则将无法启动成功
-  if (!configOpts.basePath) {
-    console.error('Should define basePath!', opts, configOpts);
+  // 如果没有 rootPath，则将无法启动成功
+  if (!configOpts.rootPath) {
+    console.error('Should define rootPath!', opts, configOpts);
     return null;
   }
 
@@ -43,8 +43,8 @@ function getConfigOpts(opts) {
     }, configOpts.mocker);
   }
 
-  // 日志文件存储的路径，默认值为 ${basePath}/logs
-  configOpts.LOG_PATH = configOpts.LOG_PATH || path.join(configOpts.basePath, 'logs');
+  // 日志文件存储的路径，默认值为 ${rootPath}/logs
+  configOpts.LOG_PATH = configOpts.LOG_PATH || path.join(configOpts.rootPath, 'logs');
 
   // matman 启动之后的服务端口号，默认为 9527
   configOpts.port = configOpts.port || 9527;

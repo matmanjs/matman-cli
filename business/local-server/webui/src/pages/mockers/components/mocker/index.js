@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { Layout } from 'antd';
+
 import { ajax } from '../../../../business/db';
 
 import { loadMocker, loadMockerReadme, setMockerActiveModule, setMockerDisable } from '../../data/data-mocker';
+import { loadMockerList } from '../../data/data-mocker-list';
 
 import MockerBreadcrumb from './display-breadcrumb';
 import MockerDetail from './display-detail';
@@ -11,6 +14,7 @@ import MockerShowResult from './display-show-result';
 import MockerSwitcher from './display-action';
 import MockModuleList from './display-mock-module-list';
 import MockerReadme from './display-readme';
+import MockerMenu from './display-menu';
 
 import './index.less';
 
@@ -31,6 +35,9 @@ class Mocker extends Component {
     // 加载这个 mocker 的信息
     this.props.loadMocker(mockerName);
     this.props.loadMockerReadme(mockerName);
+
+    // 加载所有的 mocker，主要是为了菜单展示
+    this.props.loadMockerList();
   }
 
   handlePreviewResult = (query) => {
@@ -86,65 +93,81 @@ class Mocker extends Component {
     this.props.setMockerDisable(this.props.mockerItem.name, !this.props.mockerItem.config.disable);
   };
 
+  handleRefresh = (mockerName) => {
+    // 加载这个 mocker 的信息
+    this.props.loadMocker(mockerName);
+    this.props.loadMockerReadme(mockerName);
+  };
+
   render() {
-    const { isLoaded, mockerItem, readme, match } = this.props;
+    const { isLoaded, mockerItem, readme, match, mockerListInfo } = this.props;
     const { modalShowData } = this.state;
 
     return (
-      <div className="mockers-mocker">
+      <Layout className="mockers-mocker">
+        <Layout.Sider className="mocker-sider">
+          <MockerMenu mockerListInfo={mockerListInfo} match={match} refresh={this.handleRefresh} />
+        </Layout.Sider>
 
-        <MockerBreadcrumb name={mockerItem.name} match={match} />
+        <Layout className="mocker-content">
+          <MockerBreadcrumb name={mockerItem.name} match={match} />
 
-        {
-          isLoaded ? (
-            <div>
-              <MockerSwitcher
-                isDisabled={mockerItem.config.disable}
-                activeModule={mockerItem.config.activeModule}
-                previewResult={this.handlePreviewResult.bind(this, null)}
-                updateDisable={this.handleDisable}
-              />
+          {
+            isLoaded ? (
+              <div>
+                <MockerSwitcher
+                  isDisabled={mockerItem.config.disable}
+                  activeModule={mockerItem.config.activeModule}
+                  previewResult={this.handlePreviewResult.bind(this, null)}
+                  updateDisable={this.handleDisable}
+                />
 
-              <MockerDetail
-                mockerItem={mockerItem}
-              />
+                <MockerDetail
+                  mockerItem={mockerItem}
+                />
 
-              <MockModuleList
-                isLoaded={isLoaded}
-                mockerItem={mockerItem}
-                previewResult={this.handlePreviewResult}
-                updateActive={this.handleActive}
-              />
+                <MockModuleList
+                  isLoaded={isLoaded}
+                  mockerItem={mockerItem}
+                  previewResult={this.handlePreviewResult}
+                  updateActive={this.handleActive}
+                />
 
-              <MockerShowResult
-                data={modalShowData}
-                onHide={this.handleModalHide}
-              />
+                <MockerShowResult
+                  data={modalShowData}
+                  onHide={this.handleModalHide}
+                />
 
-              <MockerReadme htmlContent={readme} />
+                <MockerReadme htmlContent={readme} />
 
-            </div>
-          ) : (
-            <div>加载中...</div>
-          )
-        }
-      </div>
+              </div>
+            ) : (
+              <div>加载中...</div>
+            )
+          }
+        </Layout>
+      </Layout>
     );
   }
 }
 
 function mapStateToProps(state) {
-  const { mockerInfo } = state;
+  const { mockerInfo, mockerListInfo } = state;
 
   return {
     isLoaded: mockerInfo.isLoaded,
     mockerItem: mockerInfo.data,
-    readme: mockerInfo.readme
+    readme: mockerInfo.readme,
+    mockerListInfo: mockerListInfo
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    loadMockerList() {
+      return dispatch(loadMockerList());
+    },
+
     loadMocker(mockerName) {
       return dispatch(loadMocker(mockerName));
     },

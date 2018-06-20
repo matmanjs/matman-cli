@@ -39,7 +39,7 @@ module.exports = (opts) => {
   //====================================================================================
   logger.init(configOpts.LOG_PATH);
   matmanLogger.info(configOpts);
-  console.log('configOpts:', configOpts);
+  // console.log('configOpts:', configOpts);
 
   //====================================================================================
   // 4. 创建服务，并加入 handler 路由

@@ -1,3 +1,4 @@
+const path = require('path');
 const _ = require('lodash');
 const baseRouter = require('../../server/router/base-router');
 const matman = require('../../../../business/matman');
@@ -10,11 +11,13 @@ const PLUGIN_NAME = 'mocker';
 const HANDLER_NAME_FIELD = 'mockerName';
 
 module.exports = (router, entry) => {
+  // 创建 MockerParser 对象
   const mockerParser = new MockerParser({
-    basePath: entry.mockServerPath,
-    dataPath: entry.dataPath
+    basePath: matman.mockerUtil.getMockServerBasePath(entry.rootPath, entry.mockServerPath),
+    buildPath: matman.mockerUtil.getMockServerBuildPath(entry.rootPath, entry.buildPath)
   });
 
+  // 获取所有的 mocker 列表
   let mockerList = mockerParser.getAllMocker();
 
   // GET /matman-cgi/mocker 所有的 mocker 列表信息
