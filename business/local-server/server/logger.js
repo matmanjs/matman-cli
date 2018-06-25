@@ -2,24 +2,26 @@ const path = require('path');
 const log4js = require('log4js');
 
 exports.init = function (logPath) {
-  // let isAbsolute = logPath && path.isAbsolute(logPath);
+  logPath = logPath || './build/logs';
 
   log4js.configure({
     appenders: {
-      console: { type: 'console' },
+      console: {
+        type: 'console'
+      },
       http: {
         type: 'file',
-        filename: 'logs/access.log',
+        filename: path.join(logPath, 'access.log'),
         maxLogSize: 1024 * 1024 * 50 // 50MB
       },
       matman: {
         type: 'file',
-        filename: 'logs/matman.log',
+        filename: path.join(logPath, 'matman.log'),
         maxLogSize: 1024 * 1024 * 50 // 50MB
       },
       attention: {
         type: 'file',
-        filename: 'logs/attention.log',
+        filename: path.join(logPath, 'attention.log'),
         maxLogSize: 1024 * 1024 * 50 // 50MB
       }
     },

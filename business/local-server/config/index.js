@@ -3,8 +3,16 @@ const path = require('path');
 
 /**
  * 获取最终的配置数据
+ *
  * @param {Object | String} opts 用户传递过来的参数
  * @param {String} [opts.rootPath] 项目根目录
+ * @param {String} [opts.buildPath] 构建之后的目录
+ * @param {String} [opts.logPath] 日志目录
+ * @param {String} [opts.mockServerPath]  mock server 根目录
+ * @param {String} [opts.e2ePath]  e2e 根目录
+ * @param {String} [opts.clientScriptBuildPath] e2e script 构建目录
+ * @param {String} [opts.clientScriptMatch] e2e script 匹配方式
+ *
  * @returns {Object}
  */
 function getConfigOpts(opts) {
@@ -42,9 +50,6 @@ function getConfigOpts(opts) {
       definedMockers: []
     }, configOpts.mocker);
   }
-
-  // 日志文件存储的路径，默认值为 ${rootPath}/logs
-  configOpts.LOG_PATH = configOpts.LOG_PATH || path.join(configOpts.rootPath, 'logs');
 
   // matman 启动之后的服务端口号，默认为 9527
   configOpts.port = configOpts.port || 9527;

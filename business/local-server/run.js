@@ -37,7 +37,7 @@ module.exports = (opts) => {
   //====================================================================================
   // 3. 初始化日志打印
   //====================================================================================
-  logger.init(configOpts.LOG_PATH);
+  logger.init(configOpts.logPath);
   matmanLogger.info(configOpts);
   // console.log('configOpts:', configOpts);
 
