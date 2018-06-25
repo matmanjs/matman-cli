@@ -9,7 +9,7 @@ const path = require('path');
  * @param {String} [opts.buildPath] 构建之后的目录
  * @param {String} [opts.logPath] 日志目录
  * @param {String} [opts.mockServerPath]  mock server 根目录
- * @param {String} [opts.e2ePath]  e2e 根目录
+ * @param {String} [opts.e2eTestPath]  e2e 测试根目录
  * @param {String} [opts.clientScriptBuildPath] e2e script 构建目录
  * @param {String} [opts.clientScriptMatch] e2e script 匹配方式
  *
