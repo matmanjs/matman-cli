@@ -10,8 +10,6 @@ MatMan 项目的 CLI 工具。
 npm install matman-cli -g
 ```
 
-> 由于使用了 `async/await` 语法，且没有使用 `babel` 处理，请将 node 升级到 `7.6` 及以上版本。
-
 ## 用法说明
 
 ### matman.config.js
