@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node ../../../bin/matman start"
+    "start": "node ../../../bin/matman start",
+    "dev": "node-dev ../../../bin/matman start"
   },
   "author": "helinjiang",
   "license": "MIT"
