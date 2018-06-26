@@ -1,5 +1,6 @@
-// http://pm2.keymetrics.io/docs/usage/pm2-api/
+const express = require('express')
+const app = express()
 
-// const run = require('./run');
+app.get('/', (req, res) => res.send('Hello World!3'))
 
-console.log(process)
+app.listen(3000, () => console.log('Example app listening on port 3000!'))
