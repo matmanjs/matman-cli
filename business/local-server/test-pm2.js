@@ -8,6 +8,7 @@ pm2.connect(function (err) {
 
     pm2.start({
         name:'testpm2',
+        args:['hello','world'],
         script: 'app.js',         // Script to be run
         max_memory_restart: '100M',   // Optional: Restarts your app if it reaches 100Mo
         'watch': true,
