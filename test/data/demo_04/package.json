@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node ../../../bin/matman start",
+    "start": "node ../../../bin/matman start --dev",
     "start-dev": "node-dev ../../../bin/matman start",
     "start-pm2": "pm2 start ../../../bin/matman --name=startpm2 start"
   },
