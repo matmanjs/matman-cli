@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  // rootPath: __dirname,
+  rootPath: __dirname,
   // buildPath: path.resolve(__dirname, './build'),
   mockServerPath: path.resolve(__dirname, '../fixtures/mock_server/mockers'),
   // clientScriptBuildPath: path.join(__dirname, 'dist-client-script'),

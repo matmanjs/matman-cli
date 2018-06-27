@@ -8,7 +8,6 @@ global.Promise = require('bluebird');
 // const babelCompileDirectory = require('babel-d');
 
 const matmanServer = require('./server');
-const runConfig = require('./config');
 
 const logger = require('./server/logger');
 const matmanLogger = logger.matmanLogger();
@@ -18,12 +17,9 @@ const attentionLogger = logger.attentionLogger();
 global.matmanLogger = matmanLogger;
 global.attentionLogger = attentionLogger;
 
-module.exports = (opts) => {
+module.exports = (configOpts) => {
   //====================================================================================
   // 1. 获取配置项
-  //====================================================================================
-  let configOpts = runConfig.getConfigOpts(opts);
-
   // 如果没法获取配置项，则将无法启动成功
   if (!configOpts) {
     throw new Error('Invalid param!');
