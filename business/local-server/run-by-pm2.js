@@ -4,14 +4,14 @@ const spawn = require('cross-spawn');
 const matman = require('../matman');
 
 module.exports = (configOpts) => {
-  console.log('run-by-pm2', configOpts);
+  // console.log('run-by-pm2', configOpts);
 
   // pm2 的方式下，则需要先生成 pm2.json 文件，然后再使用 pm2 启动
   const buildPath = matman.mockerUtil.getMockServerBuildPath(configOpts.rootPath, configOpts.buildPath);
   const pm2ConfigFilePath = path.join(buildPath, 'pm2.json');
 
   // 获取配置信息
-  let pm2Config = getPm2Config();
+  let pm2Config = getPm2Config(configOpts);
 
   // 本地构建一份配置到 buildPath 下
   fse.outputJson(pm2ConfigFilePath, pm2Config)
@@ -52,20 +52,28 @@ function run(pm2ConfigFilePath) {
   });
 }
 
+/**
+ * 获得最终的 pm2.json 中内容
+ *
+ * TODO 这里的配置项应该可以通过 configOpts 传递下来
+ *
+ * @param configOpts
+ * @returns {{apps: *[]}}
+ */
+function getPm2Config(configOpts) {
+  const mockServerPath = matman.mockerUtil.getMockServerBasePath(configOpts.rootPath, configOpts.mockServerPath);
+  const buildPath = matman.mockerUtil.getMockServerBuildPath(configOpts.rootPath, configOpts.buildPath);
+  const matmanConfigPath = path.join(configOpts.rootPath, 'matman.config.js');
 
-function getPm2Config() {
+  // http://pm2.keymetrics.io/docs/usage/application-declaration/
   let result = {
-    /**
-     * Application configuration section
-     * http://pm2.keymetrics.io/docs/usage/application-declaration/
-     */
     apps: [
       {
         name: 'matman_app',
         script: path.join(__dirname, './start-app.js'),
-        watch: ['/Users/helinjiang/gitprojects/matman-cli/test/data/fixtures/mock_server'],
-        ignore_watch: ['node_modules', 'build'],
-        args: ['/Users/helinjiang/gitprojects/matman-cli/test/data/demo_04/matman.config.js', '/Users/helinjiang/gitprojects/matman-cli/test/data/demo_04'],
+        watch: [mockServerPath],
+        ignore_watch: ['node_modules', buildPath],
+        args: [matmanConfigPath, configOpts.rootPath],
         env: {
           COMMON_VARIABLE: 'true'
         },
