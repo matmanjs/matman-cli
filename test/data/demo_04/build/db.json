@@ -1,9 +1,9 @@
 {
-  "mockServerPath": "D:\\gitprojects\\matman-cli\\test\\data\\fixtures\\mock_server\\mockers",
-  "buildPath": "D:\\gitprojects\\matman-cli\\test\\data\\demo_04\\build",
+  "mockServerPath": "/Users/helinjiang/gitprojects/matman-cli/test/data/fixtures/mock_server/mockers",
+  "buildPath": "/Users/helinjiang/gitprojects/matman-cli/test/data/demo_04/build",
   "data": [
     {
-      "basePath": "D:\\gitprojects\\matman-cli\\test\\data\\fixtures\\mock_server\\mockers\\demo_basic",
+      "basePath": "/Users/helinjiang/gitprojects/matman-cli/test/data/fixtures/mock_server/mockers/demo_basic",
       "name": "name_demo_basic",
       "mockModuleList": [
         {
@@ -93,7 +93,7 @@
       }
     },
     {
-      "basePath": "D:\\gitprojects\\matman-cli\\test\\data\\fixtures\\mock_server\\mockers\\demo_simple",
+      "basePath": "/Users/helinjiang/gitprojects/matman-cli/test/data/fixtures/mock_server/mockers/demo_simple",
       "name": "demo_simple",
       "mockModuleList": [
         {
